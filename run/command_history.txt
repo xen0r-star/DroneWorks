@@ -1,0 +1,2 @@
+/give Player777 minecraft:command_block 1
+/gamerule commandBlockOutput false

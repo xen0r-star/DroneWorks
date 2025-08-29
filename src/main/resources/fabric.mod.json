@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "droneworks",
+  "version": "${version}",
+  "name": "DroneWorks",
+  "description": "Adds small autonomous drones to assist the player.",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/droneworks/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "io.github.xen0r_star.droneworks.MainClient"
+    ],
+    "main": [
+      "io.github.xen0r_star.droneworks.Main"
+    ]
+  },
+  "mixins": [
+    "droneworks.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
