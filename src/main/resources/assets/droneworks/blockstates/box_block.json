@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "droneworks:block/box_block" }
+  }
+}

@@ -1,2 +1,5 @@
 /give Player777 minecraft:command_block 1
 /gamerule commandBlockOutput false
+/time set day
+/fill ~ ~ ~ ~25 ~ ~25 minecraft:bamboo_mosaic
+/kill @e[type=minecraft:item]
