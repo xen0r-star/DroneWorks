@@ -1,15 +1,23 @@
 package io.github.xen0r_star.droneworks.client.model;
 
-import io.github.xen0r_star.droneworks.entity.DroneEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
+import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.render.entity.state.EntityRenderState;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.Identifier;
 
-public class DroneModel extends EntityModel<DroneEntity> {
+public class DroneModel extends EntityModel<EntityRenderState> {
+    public static final EntityModelLayer MODEL_LAYER = new EntityModelLayer(
+        Identifier.of("droneworks", "drone"), "main"
+    );
+
     private final ModelPart Drone;
 
     public DroneModel(ModelPart root) {
+        super(root);
+
         this.Drone = root.getChild("Drone");
         this.Drone.getChild("Body");
         ModelPart propellerElement = this.Drone.getChild("PropellerElement");
@@ -95,15 +103,5 @@ public class DroneModel extends EntityModel<DroneEntity> {
                 .uv(46, 45).cuboid(-1.5F, -0.2F, -1.5F, 1.0F, 2.0F, 1.0F, new Dilation(0.0F))
                 .uv(30, 38).cuboid(-2.0F, -2.0F, -2.0F, 2.0F, 2.0F, 2.0F, new Dilation(0.0F)), ModelTransform.of(0.95F, -9.3F, 1.0F, 0.0F, 0.0F, 0.0F));
         return TexturedModelData.of(modelData, 64, 64);
-    }
-
-    @Override
-    public void setAngles(DroneEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
-    }
-
-    @Override
-    public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
-        Drone.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
     }
 }

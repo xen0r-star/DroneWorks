@@ -1,24 +1,35 @@
 package io.github.xen0r_star.droneworks.client.renderer;
 
 import io.github.xen0r_star.droneworks.client.model.DroneModel;
+import io.github.xen0r_star.droneworks.client.renderer.state.DroneEntityRenderState;
 import io.github.xen0r_star.droneworks.entity.DroneEntity;
+import net.minecraft.client.render.OverlayTexture;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.util.Identifier;
 
-public class DroneRenderer extends MobEntityRenderer<DroneEntity, DroneModel> {
+public class DroneRenderer extends EntityRenderer<DroneEntity, DroneEntityRenderState> {
 
-    public static final EntityModelLayer MODEL_LAYER = new EntityModelLayer(
-            Identifier.of("droneworks", "drone"), "main"
-    );
+    private final DroneModel model;
+
+    public static final Identifier TEXTURE = Identifier.of("droneworks", "textures/entity/drone.png");
 
     public DroneRenderer(EntityRendererFactory.Context context) {
-        super(context, new DroneModel(context.getPart(MODEL_LAYER)), 0.4f);
+        super(context);
+        this.model = new DroneModel(context.getPart(DroneModel.MODEL_LAYER));
     }
 
     @Override
-    public Identifier getTexture(DroneEntity entity) {
-        return Identifier.of("droneworks", "textures/entity/drone.png");
+    public DroneEntityRenderState createRenderState() {
+        return new DroneEntityRenderState(); // vide car pas d'animations
+    }
+
+    @Override
+    public void render(DroneEntityRenderState state, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
+        VertexConsumer vertexConsumer = vertexConsumers.getBuffer(this.model.getLayer(TEXTURE));
+        this.model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV);
     }
 }

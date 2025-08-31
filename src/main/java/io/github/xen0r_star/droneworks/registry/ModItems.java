@@ -20,6 +20,6 @@ public final class ModItems {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS)
                 .register(entries -> entries.add(BOX_ITEM));
 
-        Main.LOGGER.info("ModItems initialisés");
+        System.out.println("ModItems initialisés");
     }
 }

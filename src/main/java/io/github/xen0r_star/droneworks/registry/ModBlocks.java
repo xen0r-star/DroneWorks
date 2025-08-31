@@ -25,6 +25,6 @@ public final class ModBlocks {
     }
 
     public static void init() {
-        Main.LOGGER.info("ModBlocks initialisés");
+        System.out.println("[Droneworks] ModBlocks initialisés");
     }
 }

@@ -8,8 +8,8 @@ import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.world.World;
 
 public class DroneEntity extends PathAwareEntity {
-    public DroneEntity(EntityType<? extends PathAwareEntity> entityType, World world) {
-        super(entityType, world);
+    public DroneEntity(EntityType<? extends DroneEntity> type, World world) {
+        super(type, world);
     }
 
     public static DefaultAttributeContainer.Builder createMobAttributes() {
