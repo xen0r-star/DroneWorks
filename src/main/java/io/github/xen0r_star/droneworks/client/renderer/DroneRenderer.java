@@ -29,6 +29,8 @@ public class DroneRenderer extends EntityRenderer<DroneEntity, DroneEntityRender
 
     @Override
     public void render(DroneEntityRenderState state, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
+        ((DroneModel)this.model).setAnglesForDrone(0, 0, 0, 0, 0);
+
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(this.model.getLayer(TEXTURE));
         this.model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV);
     }

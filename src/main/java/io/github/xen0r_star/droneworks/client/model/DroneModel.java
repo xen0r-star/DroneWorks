@@ -1,11 +1,9 @@
 package io.github.xen0r_star.droneworks.client.model;
 
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.render.entity.state.EntityRenderState;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class DroneModel extends EntityModel<EntityRenderState> {
@@ -103,5 +101,12 @@ public class DroneModel extends EntityModel<EntityRenderState> {
                 .uv(46, 45).cuboid(-1.5F, -0.2F, -1.5F, 1.0F, 2.0F, 1.0F, new Dilation(0.0F))
                 .uv(30, 38).cuboid(-2.0F, -2.0F, -2.0F, 2.0F, 2.0F, 2.0F, new Dilation(0.0F)), ModelTransform.of(0.95F, -9.3F, 1.0F, 0.0F, 0.0F, 0.0F));
         return TexturedModelData.of(modelData, 64, 64);
+    }
+
+    public void setAnglesForDrone(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.Drone.pitch = (float) Math.PI;
+        this.Drone.yaw = 0f;
+        this.Drone.roll = 0f;
+        this.Drone.originY= 0f;
     }
 }

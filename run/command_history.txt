@@ -9,3 +9,7 @@
 /time set day
 /kill @e[type=droneworks:drone]
 /summon droneworks:drone
+/time set day
+/weather clear
+/summon minecraft:zombie
+/summon droneworks:drone

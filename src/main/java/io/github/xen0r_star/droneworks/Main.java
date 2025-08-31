@@ -22,7 +22,7 @@ public class Main implements ModInitializer {
 
     public static final EntityType<DroneEntity> DRONE = EntityType.Builder.<DroneEntity>create(
         DroneEntity::new, SpawnGroup.CREATURE
-    ).dimensions(0.75f, 0.75f)
+    ).dimensions(0.5f, 0.5f)
     .build(DRONE_KEY);
 
     @Override
