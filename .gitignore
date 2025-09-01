@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 build
+.gradle
+run
 
 # Editor directories and files
 .vscode/*

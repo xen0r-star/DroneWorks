@@ -108,5 +108,8 @@ public class DroneModel extends EntityModel<EntityRenderState> {
         this.Drone.yaw = 0f;
         this.Drone.roll = 0f;
         this.Drone.originY= 0f;
+
+        // this.Drone.yaw = (float) Math.toRadians(entity.bodyYaw);
+        // this.Drone.pitch = (float) Math.toRadians(entity.getPitch());
     }
 }

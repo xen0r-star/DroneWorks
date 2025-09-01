@@ -10,9 +10,9 @@ import net.minecraft.registry.RegistryKeys;
 
 public final class ModBlocks {
     public static final Block BOX_BLOCK = register(
-            "box_block",
-            Block::new,
-            Block.Settings.create().strength(1.5f).requiresTool()
+        "box_block",
+        OrientableBlock::new,
+        Block.Settings.create().strength(1.5f).requiresTool()
     );
 
     private ModBlocks() {}
