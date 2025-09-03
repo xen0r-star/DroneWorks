@@ -1,3 +1,6 @@
 {
   "item.droneworks.box_block": "Box block",
+  "block.droneworks.box_block": "Box block",
+  "item.droneworks.drone_item": "Drone",
+  "itemGroup.droneworks": "Drone Works"
 }
