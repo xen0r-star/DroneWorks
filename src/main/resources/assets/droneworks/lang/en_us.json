@@ -2,5 +2,8 @@
   "item.droneworks.box_block": "Box block",
   "block.droneworks.box_block": "Box block",
   "item.droneworks.drone_item": "Drone",
-  "itemGroup.droneworks": "Drone Works"
+  "itemGroup.droneworks": "Drone Works",
+  "screen.droneworks.box": "Box Droneworks",
+  "advancements.droneworks.box_block.title": "Drone Works",
+  "advancements.droneworks.box_block.description": "This box is your first step toward creating drones."
 }

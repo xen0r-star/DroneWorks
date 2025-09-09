@@ -1,11 +1,7 @@
 package io.github.xen0r_star.droneworks;
 
 import io.github.xen0r_star.droneworks.entity.DroneEntity;
-//import io.github.xen0r_star.droneworks.registry.ModBlockEntities;
-//import io.github.xen0r_star.droneworks.registry.ModBlockEntities;
-import io.github.xen0r_star.droneworks.registry.ModBlocks;
-import io.github.xen0r_star.droneworks.registry.ModItemGroups;
-import io.github.xen0r_star.droneworks.registry.ModItems;
+import io.github.xen0r_star.droneworks.registry.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.EntityType;
@@ -35,7 +31,8 @@ public class Main implements ModInitializer {
         FabricDefaultAttributeRegistry.register(DRONE, DroneEntity.createMobAttributes());
 
         ModBlocks.init();
-        //ModBlockEntities.register();
+        ModBlockEntities.register();
+        ModScreenHandlers.init();
         ModItems.init();
         ModItemGroups.init();
 

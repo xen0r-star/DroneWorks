@@ -1,6 +1,7 @@
 package io.github.xen0r_star.droneworks.registry;
 
 import io.github.xen0r_star.droneworks.Main;
+import io.github.xen0r_star.droneworks.block.BoxBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Blocks;
@@ -11,7 +12,7 @@ import net.minecraft.registry.RegistryKeys;
 public final class ModBlocks {
     public static final Block BOX_BLOCK = register(
         "box_block",
-        OrientableBlock::new,
+        BoxBlock::new,
         Block.Settings.create().strength(1.5f).requiresTool()
     );
 

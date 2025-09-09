@@ -1,15 +1,20 @@
 package io.github.xen0r_star.droneworks.registry;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import org.jetbrains.annotations.Nullable;
 
-public class OrientableBlock extends Block {
+public class OrientableBlock extends BlockWithEntity {
     public static final EnumProperty<Direction> FACING = HorizontalFacingBlock.FACING;
 
     public OrientableBlock(Settings settings) {
@@ -29,5 +34,15 @@ public class OrientableBlock extends Block {
             return this.getDefaultState().with(FACING, player.getHorizontalFacing().getOpposite());
         }
         return this.getDefaultState();
+    }
+
+    @Override
+    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return null;
+    }
+
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return null;
     }
 }

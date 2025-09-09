@@ -1,8 +1,8 @@
 {
   "variants": {
-    "facing=north": { "model": "droneworks:block/box_block", "y":   0, "uvlock": true },
-    "facing=east":  { "model": "droneworks:block/box_block", "y":  90, "uvlock": true },
-    "facing=south": { "model": "droneworks:block/box_block", "y": 180, "uvlock": true },
-    "facing=west":  { "model": "droneworks:block/box_block", "y": 270, "uvlock": true }
+    "facing=north": { "model": "droneworks:block/box_block", "y":   0, "uvlock": false },
+    "facing=east":  { "model": "droneworks:block/box_block", "y":  90, "uvlock": false },
+    "facing=south": { "model": "droneworks:block/box_block", "y": 180, "uvlock": false },
+    "facing=west":  { "model": "droneworks:block/box_block", "y": 270, "uvlock": false }
   }
 }

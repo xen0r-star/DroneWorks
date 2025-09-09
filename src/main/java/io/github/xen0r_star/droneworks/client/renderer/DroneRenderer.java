@@ -24,7 +24,7 @@ public class DroneRenderer extends EntityRenderer<DroneEntity, DroneEntityRender
 
     @Override
     public DroneEntityRenderState createRenderState() {
-        return new DroneEntityRenderState(); // vide car pas d'animations
+        return new DroneEntityRenderState();
     }
 
     @Override

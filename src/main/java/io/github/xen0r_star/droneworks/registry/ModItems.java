@@ -1,9 +1,7 @@
 package io.github.xen0r_star.droneworks.registry;
 
 import io.github.xen0r_star.droneworks.Main;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;

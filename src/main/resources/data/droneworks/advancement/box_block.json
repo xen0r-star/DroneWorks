@@ -1,0 +1,40 @@
+{
+  "criteria": {
+    "crafted_box_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "droneworks:box_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "droneworks:gui/advancements/backgrounds/stripped_spruce_log",
+    "description": {
+      "translate": "advancements.droneworks.box_block.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "droneworks:box_block"
+    },
+    "title": {
+      "translate": "advancements.droneworks.box_block.title"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "requirements": [
+    [
+      "crafted_box_block"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
