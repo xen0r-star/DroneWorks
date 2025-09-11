@@ -15,6 +15,11 @@ public final class ModItems {
         new Item.Settings()
     );
 
+    public static final Item STATION_BLOCK = Items.register(
+            ModBlocks.STATION_BLOCK,
+            new Item.Settings()
+    );
+
     static RegistryKey<Item> DRONE_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "drone_item"));
     public static Item DRONE_ITEM = Registry.register(
         Registries.ITEM,

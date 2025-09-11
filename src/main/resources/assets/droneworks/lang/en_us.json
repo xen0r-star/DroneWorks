@@ -5,5 +5,7 @@
   "itemGroup.droneworks": "Drone Works",
   "screen.droneworks.box": "Box Droneworks",
   "advancements.droneworks.box_block.title": "Drone Works",
-  "advancements.droneworks.box_block.description": "This box is your first step toward creating drones."
+  "advancements.droneworks.box_block.description": "This box is your first step toward creating drones.",
+  "block.droneworks.station_block": "Station Block",
+  "item.droneworks.station_block": "Station Block"
 }

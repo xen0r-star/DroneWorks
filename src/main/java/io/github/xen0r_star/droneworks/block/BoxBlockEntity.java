@@ -24,27 +24,33 @@ public class BoxBlockEntity extends BlockEntity implements NamedScreenHandlerFac
     }
 
 
-    @Override public int size() {
+    @Override
+    public int size() {
         return items.size();
     }
 
-    @Override public boolean isEmpty() {
+    @Override
+    public boolean isEmpty() {
         return items.stream().allMatch(ItemStack::isEmpty);
     }
 
-    @Override public ItemStack getStack(int slot) {
+    @Override
+    public ItemStack getStack(int slot) {
         return items.get(slot);
     }
 
-    @Override public ItemStack removeStack(int slot) {
+    @Override
+    public ItemStack removeStack(int slot) {
         return Inventories.removeStack(items, slot);
     }
 
-    @Override public ItemStack removeStack(int slot, int count) {
+    @Override
+    public ItemStack removeStack(int slot, int count) {
         return Inventories.splitStack(items, slot, count);
     }
 
-    @Override public void setStack(int slot, ItemStack stack) {
+    @Override
+    public void setStack(int slot, ItemStack stack) {
         items.set(slot, stack);
         markDirty();
     }
@@ -52,7 +58,7 @@ public class BoxBlockEntity extends BlockEntity implements NamedScreenHandlerFac
 
     @Override
     public boolean canPlayerUse(PlayerEntity player) {
-        return false;
+        return pos.isWithinDistance(player.getPos(), 8.0);
     }
 
     @Override public void clear() {

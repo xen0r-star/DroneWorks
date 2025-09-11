@@ -17,6 +17,7 @@ public class ModItemGroups {
                     .icon(() -> new ItemStack(ModItems.BOX_ITEM))
                     .entries((context, entries) -> {
                         entries.add(ModItems.BOX_ITEM);
+                        entries.add(ModItems.STATION_BLOCK);
                         entries.add(ModItems.DRONE_ITEM);
                     })
                     .build()
