@@ -1,0 +1,31 @@
+{
+  "parent": "droneworks:craft_station",
+  "criteria": {
+    "linked_drone": {
+      "trigger": "droneworks:drone_linked_to_station"
+    }
+  },
+  "display": {
+    "icon": {
+      "id": "droneworks:drone_item",
+      "count": 1
+    },
+    "title": {
+      "translate": "advancements.droneworks.link_drone.title"
+    },
+    "description": {
+      "translate": "advancements.droneworks.link_drone.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 50
+  },
+  "requirements": [
+    ["linked_drone"]
+  ],
+  "sends_telemetry_event": true
+}

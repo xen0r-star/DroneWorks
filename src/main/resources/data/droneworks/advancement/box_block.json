@@ -32,9 +32,7 @@
     "experience": 10
   },
   "requirements": [
-    [
-      "crafted_box_block"
-    ]
+    ["crafted_box_block"]
   ],
   "sends_telemetry_event": true
 }

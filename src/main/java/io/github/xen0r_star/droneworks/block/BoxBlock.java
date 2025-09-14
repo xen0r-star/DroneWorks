@@ -23,6 +23,7 @@ public class BoxBlock extends OrientableBlock {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
+
             if (blockEntity instanceof NamedScreenHandlerFactory factory) {
                 player.openHandledScreen(factory);
             }

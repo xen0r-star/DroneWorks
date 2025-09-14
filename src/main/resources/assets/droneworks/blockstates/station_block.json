@@ -1,8 +1,12 @@
 {
   "variants": {
-    "facing=north": { "model": "droneworks:block/station_block", "y":   0, "uvlock": false },
-    "facing=east":  { "model": "droneworks:block/station_block", "y":  90, "uvlock": false },
-    "facing=south": { "model": "droneworks:block/station_block", "y": 180, "uvlock": false },
-    "facing=west":  { "model": "droneworks:block/station_block", "y": 270, "uvlock": false }
+    "facing=north,linked=false": { "model": "droneworks:block/station_block_unlink" },
+    "facing=north,linked=true":  { "model": "droneworks:block/station_block" },
+    "facing=east,linked=false":  { "model": "droneworks:block/station_block_unlink", "y":  90 },
+    "facing=east,linked=true":   { "model": "droneworks:block/station_block", "y":  90 },
+    "facing=south,linked=false": { "model": "droneworks:block/station_block_unlink", "y": 180 },
+    "facing=south,linked=true":  { "model": "droneworks:block/station_block", "y": 180 },
+    "facing=west,linked=false":  { "model": "droneworks:block/station_block_unlink", "y": 270 },
+    "facing=west,linked=true":   { "model": "droneworks:block/station_block", "y": 270 }
   }
 }

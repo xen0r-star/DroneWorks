@@ -1,11 +1,21 @@
 {
-  "item.droneworks.box_block": "Box block",
-  "block.droneworks.box_block": "Box block",
-  "item.droneworks.drone_item": "Drone",
   "itemGroup.droneworks": "Drone Works",
+  "item.droneworks.box_block": "Box block",
+  "item.droneworks.drone_item": "Drone",
+  "item.droneworks.station_block": "Station Block",
+  "block.droneworks.box_block": "Box block",
+  "block.droneworks.station_block": "Station Block",
   "screen.droneworks.box": "Box Droneworks",
+
+  "message.drone.already_linked": "A drone is already linked to this station!",
+  "message.drone.linked": "Drone linked to station",
+
   "advancements.droneworks.box_block.title": "Drone Works",
   "advancements.droneworks.box_block.description": "This box is your first step toward creating drones.",
-  "block.droneworks.station_block": "Station Block",
-  "item.droneworks.station_block": "Station Block"
+  "advancements.droneworks.craft_drone.title": "Craft a Drone",
+  "advancements.droneworks.craft_drone.description": "You have crafted your first drone.",
+  "advancements.droneworks.craft_station.title": "Craft a Station",
+  "advancements.droneworks.craft_station.description": "You have crafted a drone station.",
+  "advancements.droneworks.link_drone.title": "Link a Drone",
+  "advancements.droneworks.link_drone.description": "You have linked a drone to a station."
 }
