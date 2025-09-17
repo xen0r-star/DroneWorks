@@ -3,13 +3,13 @@
   "item.droneworks.box_block": "Bloc boîte",
   "item.droneworks.drone_item": "Drone",
   "item.droneworks.station_block": "Bloc station",
+  "item.droneworks.battery_item": "Batterie",
+  "item.droneworks.antenna_item": "Antenne",
   "block.droneworks.box_block": "Bloc boîte",
   "block.droneworks.station_block": "Bloc station",
   "screen.droneworks.box": "Boîte Droneworks",
-
   "message.drone.already_linked": "Un drone est déjà lié à cette station !",
   "message.drone.linked": "Drone lié à la station",
-
   "advancements.droneworks.box_block.title": "Drone Works",
   "advancements.droneworks.box_block.description": "Cette boîte est votre premier pas vers la création de drones.",
   "advancements.droneworks.craft_drone.title": "Fabriquer un drone",

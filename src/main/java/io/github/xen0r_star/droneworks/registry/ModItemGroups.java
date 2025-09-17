@@ -19,6 +19,8 @@ public class ModItemGroups {
                         entries.add(ModItems.BOX_ITEM);
                         entries.add(ModItems.STATION_BLOCK);
                         entries.add(ModItems.DRONE_ITEM);
+                        entries.add(ModItems.BATTERY_ITEM);
+                        entries.add(ModItems.ANTENNA_ITEM);
                     })
                     .build()
     );
