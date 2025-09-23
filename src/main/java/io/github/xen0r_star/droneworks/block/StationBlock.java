@@ -47,14 +47,13 @@ public class StationBlock extends OrientableBlock {
         if (!world.isClient) {
             Hand hand = player.getActiveHand();
             ItemStack stack = player.getStackInHand(hand);
+            BlockEntity blockEntity = world.getBlockEntity(pos);
 
-            if (stack.isOf(ModItems.DRONE_ITEM)) {
-                BlockEntity blockEntity = world.getBlockEntity(pos);
-
-                if (blockEntity instanceof StationBlockEntity station) {
+            if (blockEntity instanceof StationBlockEntity station) {
+                if (stack.isOf(ModItems.DRONE_ITEM)) {
                     if (station.hasLinkedDrone()) {
                         UUID uuid = station.getLinkedDroneUuid();
-                        Entity linked = ((ServerWorld)world).getEntity(uuid);
+                        Entity linked = ((ServerWorld) world).getEntity(uuid);
 
                         if (linked instanceof DroneEntity) {
                             player.sendMessage(
@@ -71,8 +70,8 @@ public class StationBlock extends OrientableBlock {
 
                     float facing = switch (state.get(StationBlock.FACING)) {
                         case NORTH -> 180f;
-                        case WEST  -> 90f;
-                        case EAST  -> 270f;
+                        case WEST -> 90f;
+                        case EAST -> 270f;
                         default -> 0f;
                     };
 
@@ -82,7 +81,7 @@ public class StationBlock extends OrientableBlock {
                             facing, 0
                     );
                     drone.setPersistent();
-                    drone.setLinkedStation(station);
+                    drone.setLinkedStationPos(station.getPos());
                     world.spawnEntity(drone);
 
                     station.setLinkedDrone(drone);
@@ -101,6 +100,9 @@ public class StationBlock extends OrientableBlock {
                     }
 
                     return ActionResult.SUCCESS;
+
+                } else {
+                    player.openHandledScreen(station);
                 }
             }
         }

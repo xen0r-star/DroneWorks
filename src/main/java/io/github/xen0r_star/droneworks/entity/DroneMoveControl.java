@@ -22,10 +22,10 @@ class DroneMoveControl extends FlightMoveControl {
             float yaw = (float)(MathHelper.atan2(v.z, v.x) * (180F / Math.PI)) - 90.0F;
             this.drone.setYaw(yaw);
             this.drone.bodyYaw = yaw;
+            this.drone.headYaw = yaw;
 
             float pitch = (float)(-(MathHelper.atan2(v.y, v.horizontalLength()) * (180F / Math.PI)));
             this.drone.setPitch(pitch);
         }
     }
 }
-

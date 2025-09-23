@@ -1,7 +1,7 @@
 package io.github.xen0r_star.droneworks.client.screen;
 
 import io.github.xen0r_star.droneworks.Main;
-import io.github.xen0r_star.droneworks.screen.BoxScreenHandler;
+import io.github.xen0r_star.droneworks.screen.StationScreenHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gl.RenderPipelines;
@@ -12,13 +12,13 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class BoxScreen extends HandledScreen<BoxScreenHandler> {
-    private static final Identifier TEXTURE = Identifier.of(Main.MOD_ID, "textures/gui/container/box_block1.png");
+public class StationScreen extends HandledScreen<StationScreenHandler> {
+    private static final Identifier TEXTURE = Identifier.of(Main.MOD_ID, "textures/gui/container/station_block1.png");
 
-    public BoxScreen(BoxScreenHandler handler, PlayerInventory inv, Text title) {
+    public StationScreen(StationScreenHandler handler, PlayerInventory inv, Text title) {
         super(handler, inv, title);
         this.backgroundWidth = 176;
-        this.backgroundHeight = 183;
+        this.backgroundHeight = 166;
     }
 
     @Override

@@ -10,12 +10,12 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
 
-public class BoxScreenHandler extends ScreenHandler {
-    private final Inventory boxInventory;
+public class StationScreenHandler extends ScreenHandler {
+    private final Inventory stationInventory;
 
-    public BoxScreenHandler(int syncId, PlayerInventory playerInventory) {
-        super(ModScreenHandlers.BOX_SCREEN_HANDLER, syncId);
-        this.boxInventory = new SimpleInventory(7);
+    public StationScreenHandler(int syncId, PlayerInventory playerInventory) {
+        super(ModScreenHandlers.STATION_SCREEN_HANDLER, syncId);
+        this.stationInventory = new SimpleInventory(15);
 
         addBlockInventorySlots();
         addPlayerInventorySlots(playerInventory);
@@ -32,13 +32,17 @@ public class BoxScreenHandler extends ScreenHandler {
     }
 
     private void addBlockInventorySlots() {
-        this.addSlot(new Slot(boxInventory, 0, 116, 22));
-        this.addSlot(new Slot(boxInventory, 1, 94,  44));
-        this.addSlot(new Slot(boxInventory, 2, 116, 44));
-        this.addSlot(new Slot(boxInventory, 3, 138, 44));
-        this.addSlot(new Slot(boxInventory, 4, 94,  66));
-        this.addSlot(new Slot(boxInventory, 5, 116, 66));
-        this.addSlot(new Slot(boxInventory, 6, 138, 66));
+        int x=80;
+        int y=17;
+
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 5; col++) {
+                int slotIndex = col + row * 5;
+                int slotX = x + col * 18;
+                int slotY = y + row * 18;
+                this.addSlot(new Slot(stationInventory, slotIndex, slotX, slotY));
+            }
+        }
     }
 
     private void addPlayerInventorySlots(PlayerInventory playerInventory) {
@@ -47,7 +51,7 @@ public class BoxScreenHandler extends ScreenHandler {
             for (int col = 0; col < 9; col++) {
                 int slotIndex = col + row * 9 + 9;
                 int slotX = 8 + col * 18;
-                int slotY = 101 + row * 18;
+                int slotY = 84 + row * 18;
                 this.addSlot(new Slot(playerInventory, slotIndex, slotX, slotY));
             }
         }
@@ -55,7 +59,7 @@ public class BoxScreenHandler extends ScreenHandler {
         // Hotbar
         for (int col = 0; col < 9; col++) {
             int slotX = 8 + col * 18;
-            int slotY = 101 + 58;
+            int slotY = 84 + 58;
             this.addSlot(new Slot(playerInventory, col, slotX, slotY));
         }
     }

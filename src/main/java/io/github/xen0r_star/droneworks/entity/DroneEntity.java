@@ -1,25 +1,31 @@
 package io.github.xen0r_star.droneworks.entity;
 
 import io.github.xen0r_star.droneworks.block.StationBlockEntity;
+import io.github.xen0r_star.droneworks.entity.goal.DroneHarvestCropsGoal;
+import io.github.xen0r_star.droneworks.entity.goal.DroneReturnToStationGoal;
+import io.github.xen0r_star.droneworks.entity.goal.DroneTillAndPlantGoal;
 import io.github.xen0r_star.droneworks.registry.ModItems;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.LookAroundGoal;
+import net.minecraft.entity.ai.pathing.BirdNavigation;
 import net.minecraft.entity.ai.pathing.EntityNavigation;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
-import net.minecraft.particle.ParticleTypes;
+import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.ai.goal.LookAroundGoal;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.particle.ParticleTypes;
 
 
 public class DroneEntity extends PathAwareEntity {
-    private int particleCooldown = 0;
     private BlockPos linkedStationPos;
+    private int particleCooldown = 0;
+    private final SimpleInventory inventory = new SimpleInventory(27); // 27 slots
 
 
     public DroneEntity(EntityType<? extends PathAwareEntity> type, World world) {
@@ -31,19 +37,22 @@ public class DroneEntity extends PathAwareEntity {
 
     public static DefaultAttributeContainer.Builder createMobAttributes() {
         return MobEntity.createMobAttributes()
-            .add(EntityAttributes.MAX_HEALTH, 20.0)
-            .add(EntityAttributes.FLYING_SPEED, 0.2)
-            .add(EntityAttributes.MOVEMENT_SPEED, 0.15);
+                .add(EntityAttributes.MAX_HEALTH, 20.0)
+                .add(EntityAttributes.FLYING_SPEED, 0.2)
+                .add(EntityAttributes.MOVEMENT_SPEED, 0.15);
     }
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(1, new LookAroundGoal(this));
+        this.goalSelector.add(1, new DroneHarvestCropsGoal(this, 10, 0.15));
+        this.goalSelector.add(2, new DroneTillAndPlantGoal(this, 10, 0.15));
+        this.goalSelector.add(3, new DroneReturnToStationGoal(this, 1.0));
+        this.goalSelector.add(4, new LookAroundGoal(this));
     }
 
     @Override
     protected EntityNavigation createNavigation(World world) {
-        return super.createNavigation(world);
+        return new BirdNavigation(this, world);
     }
 
     @Override
@@ -57,11 +66,12 @@ public class DroneEntity extends PathAwareEntity {
         super.tick();
 
         if (this.getWorld().isClient) return;
-
+        
+        // Particles
         particleCooldown--;
         if (particleCooldown > 0) return;
-        particleCooldown = 10; // 10 ticks = 0.5 sec
 
+        particleCooldown = 10; // 10 ticks = 0.5 sec
         float healthPercent = this.getHealth() / this.getMaxHealth();
 
         if (healthPercent <= 0.5f && healthPercent > 0.25f) {
@@ -71,6 +81,7 @@ public class DroneEntity extends PathAwareEntity {
                     2, 0.1, 0.1, 0.1,
                     0.01
             );
+
         } else if (healthPercent <= 0.25f) {
             ((ServerWorld)this.getWorld()).spawnParticles(
                     ParticleTypes.SMOKE,
@@ -81,10 +92,11 @@ public class DroneEntity extends PathAwareEntity {
         }
     }
 
+
+
+    // Loot
     @Override
-    protected boolean shouldDropLoot() {
-        return false;
-    }
+    protected boolean shouldDropLoot() { return false; }
 
     @Override
     public void onDeath(DamageSource source) {
@@ -105,7 +117,18 @@ public class DroneEntity extends PathAwareEntity {
     }
 
 
-    public void setLinkedStation(StationBlockEntity station) {
-        this.linkedStationPos = station.getPos();
+
+    // Station link
+    public void setLinkedStationPos(BlockPos pos) {
+        this.linkedStationPos = pos;
+    }
+
+    public BlockPos getLinkedStationPos() {
+        return this.linkedStationPos;
+    }
+
+    // Inventory
+    public SimpleInventory getInventory() {
+        return inventory;
     }
 }

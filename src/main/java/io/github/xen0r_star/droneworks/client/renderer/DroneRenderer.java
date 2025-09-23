@@ -12,10 +12,9 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.util.Identifier;
 
 public class DroneRenderer extends EntityRenderer<DroneEntity, DroneEntityRenderState> {
-
     private final DroneModel model;
-
     public static final Identifier TEXTURE = Identifier.of("droneworks", "textures/entity/drone.png");
+
 
     public DroneRenderer(EntityRendererFactory.Context context) {
         super(context);
@@ -29,7 +28,7 @@ public class DroneRenderer extends EntityRenderer<DroneEntity, DroneEntityRender
 
     @Override
     public void render(DroneEntityRenderState state, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
-        this.model.setAnglesForDrone(0, 0, 0, 0, 0);
+        this.model.setAnglesForDrone();
 
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(this.model.getLayer(TEXTURE));
         this.model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV);

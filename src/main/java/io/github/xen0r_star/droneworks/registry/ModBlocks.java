@@ -10,6 +10,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 
+
 public final class ModBlocks {
     public static final Block BOX_BLOCK = register(
         "box_block",
