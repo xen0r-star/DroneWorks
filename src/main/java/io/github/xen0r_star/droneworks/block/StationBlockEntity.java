@@ -71,11 +71,11 @@ public class StationBlockEntity extends BlockEntity implements NamedScreenHandle
     protected void readData(ReadView view) {
         super.readData(view);
         view.read("LinkedDrone", Uuids.INT_STREAM_CODEC)
-                .map(uuid -> {
-                    linkedDroneUuid = uuid;
-                    // System.out.println("[StationBE] readData UUID=" + linkedDroneUuid);
-                    return linkedDroneUuid;
-                });
+            .map(uuid -> {
+                linkedDroneUuid = uuid;
+                // System.out.println("[StationBE] readData UUID=" + linkedDroneUuid);
+                return linkedDroneUuid;
+            });
     }
 
 

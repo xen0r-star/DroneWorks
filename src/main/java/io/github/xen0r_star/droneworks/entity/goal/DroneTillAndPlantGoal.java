@@ -113,9 +113,9 @@ public class DroneTillAndPlantGoal extends Goal {
 
                     if (!(st.isOf(Blocks.FARMLAND) && serverWorld.getBlockState(targetSoil.up()).isAir())) {
                         serverWorld.setBlockState(targetSoil, Blocks.FARMLAND.getDefaultState(), 3);
+                    } else {
+                        serverWorld.setBlockState(targetSoil.up(), Blocks.CARROTS.getDefaultState(), 3);
                     }
-
-                    serverWorld.setBlockState(targetSoil.up(), Blocks.CARROTS.getDefaultState(), 3);
 
 
                     state = HarvestState.ENDING;

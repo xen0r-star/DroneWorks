@@ -11,9 +11,10 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+
 @Environment(EnvType.CLIENT)
 public class StationScreen extends HandledScreen<StationScreenHandler> {
-    private static final Identifier TEXTURE = Identifier.of(Main.MOD_ID, "textures/gui/container/station_block1.png");
+    private static final Identifier TEXTURE = Identifier.of(Main.MOD_ID, "textures/gui/container/station_block.png");
 
     public StationScreen(StationScreenHandler handler, PlayerInventory inv, Text title) {
         super(handler, inv, title);

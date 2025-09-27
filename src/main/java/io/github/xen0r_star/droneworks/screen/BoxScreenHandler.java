@@ -1,11 +1,15 @@
 package io.github.xen0r_star.droneworks.screen;
 
+import io.github.xen0r_star.droneworks.block.BoxBlockEntity;
+import io.github.xen0r_star.droneworks.registry.ModItems;
 import io.github.xen0r_star.droneworks.registry.ModScreenHandlers;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
@@ -23,22 +27,98 @@ public class BoxScreenHandler extends ScreenHandler {
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        return true;
+        return this.boxInventory.canPlayerUse(player);
     }
 
     @Override
-    public ItemStack quickMove(PlayerEntity player, int slot) {
-        return ItemStack.EMPTY;
+    public void onContentChanged(Inventory inv) {
+        super.onContentChanged(inv);
+        if (inv instanceof BlockEntity inventory) {
+            inventory.markDirty();
+        }
+    }
+
+    @Override
+    public ItemStack quickMove(PlayerEntity player, int index) {
+        ItemStack newStack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(index);
+
+        if (slot.hasStack()) {
+            ItemStack originalStack = slot.getStack();
+            newStack = originalStack.copy();
+
+            int containerSlots = 7;
+
+            if (index < containerSlots) {
+                if (!this.insertItem(originalStack, containerSlots, this.slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else {
+                if (!this.insertItem(originalStack, 0, containerSlots, false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
+
+            if (originalStack.isEmpty()) {
+                slot.setStack(ItemStack.EMPTY);
+            } else {
+                slot.markDirty();
+            }
+        }
+
+        return newStack;
     }
 
     private void addBlockInventorySlots() {
-        this.addSlot(new Slot(boxInventory, 0, 116, 22));
-        this.addSlot(new Slot(boxInventory, 1, 94,  44));
-        this.addSlot(new Slot(boxInventory, 2, 116, 44));
-        this.addSlot(new Slot(boxInventory, 3, 138, 44));
-        this.addSlot(new Slot(boxInventory, 4, 94,  66));
-        this.addSlot(new Slot(boxInventory, 5, 116, 66));
-        this.addSlot(new Slot(boxInventory, 6, 138, 66));
+        this.addSlot(new Slot(boxInventory, 0, 116, 22) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(ModItems.ANTENNA_ITEM);
+            }
+        });
+
+        this.addSlot(new Slot(boxInventory, 1, 94,  44) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(Items.REDSTONE);
+            }
+        });
+
+        this.addSlot(new Slot(boxInventory, 2, 116, 44) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(Items.REDSTONE);
+            }
+        });
+
+        this.addSlot(new Slot(boxInventory, 3, 138, 44) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(Items.REDSTONE);
+            }
+        });
+
+        this.addSlot(new Slot(boxInventory, 4, 94,  66) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(Items.REDSTONE);
+            }
+        });
+
+        this.addSlot(new Slot(boxInventory, 5, 116, 66) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(ModItems.BATTERY_ITEM);
+            }
+        });
+
+        this.addSlot(new Slot(boxInventory, 6, 138, 66) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(Items.REDSTONE);
+            }
+        });
+
     }
 
     private void addPlayerInventorySlots(PlayerInventory playerInventory) {

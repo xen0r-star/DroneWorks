@@ -22,6 +22,23 @@ public class ModItemGroups {
                 entries.add(ModItems.DRONE_ITEM);
                 entries.add(ModItems.BATTERY_ITEM);
                 entries.add(ModItems.ANTENNA_ITEM);
+
+                entries.add(ModItems.SPRAY_PAINT_BLACK_ITEM);
+                entries.add(ModItems.SPRAY_PAINT_BLUE_ITEM);
+                entries.add(ModItems.SPRAY_PAINT_BROWN_ITEM);
+                entries.add(ModItems.SPRAY_PAINT_CYAN_ITEM);
+                entries.add(ModItems.SPRAY_PAINT_GRAY_ITEM);
+                entries.add(ModItems.SPRAY_PAINT_GREEN_ITEM);
+                entries.add(ModItems.SPRAY_PAINT_LIGHT_BLUE_ITEM);
+                entries.add(ModItems.SPRAY_PAINT_LIGHT_GRAY_ITEM);
+                entries.add(ModItems.SPRAY_PAINT_LIME_ITEM);
+                entries.add(ModItems.SPRAY_PAINT_MAGENTA_ITEM);
+                entries.add(ModItems.SPRAY_PAINT_ORANGE_ITEM);
+                entries.add(ModItems.SPRAY_PAINT_PINK_ITEM);
+                entries.add(ModItems.SPRAY_PAINT_PURPLE_ITEM);
+                entries.add(ModItems.SPRAY_PAINT_RED_ITEM);
+                entries.add(ModItems.SPRAY_PAINT_WHITE_ITEM);
+                entries.add(ModItems.SPRAY_PAINT_YELLOW_ITEM);
             })
             .build()
     );

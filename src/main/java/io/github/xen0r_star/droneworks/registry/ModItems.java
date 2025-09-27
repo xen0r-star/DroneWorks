@@ -51,6 +51,185 @@ public final class ModItems {
         )
     );
 
+
+
+    static RegistryKey<Item> SPRAY_PAINT_BLACK_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "spray_paint_black_item"));
+    public static Item SPRAY_PAINT_BLACK_ITEM = Registry.register(
+        Registries.ITEM,
+        SPRAY_PAINT_BLACK_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(SPRAY_PAINT_BLACK_ITEM_KEY)
+        )
+    );
+
+
+    static RegistryKey<Item> SPRAY_PAINT_BLUE_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "spray_paint_blue_item"));
+    public static Item SPRAY_PAINT_BLUE_ITEM = Registry.register(
+        Registries.ITEM,
+        SPRAY_PAINT_BLUE_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(SPRAY_PAINT_BLUE_ITEM_KEY)
+        )
+    );
+
+
+    static RegistryKey<Item> SPRAY_PAINT_BROWN_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "spray_paint_brown_item"));
+    public static Item SPRAY_PAINT_BROWN_ITEM = Registry.register(
+        Registries.ITEM,
+        SPRAY_PAINT_BROWN_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(SPRAY_PAINT_BROWN_ITEM_KEY)
+        )
+    );
+
+
+    static RegistryKey<Item> SPRAY_PAINT_CYAN_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "spray_paint_cyan_item"));
+    public static Item SPRAY_PAINT_CYAN_ITEM = Registry.register(
+        Registries.ITEM,
+        SPRAY_PAINT_CYAN_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(SPRAY_PAINT_CYAN_ITEM_KEY)
+        )
+    );
+
+
+    static RegistryKey<Item> SPRAY_PAINT_GRAY_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "spray_paint_gray_item"));
+    public static Item SPRAY_PAINT_GRAY_ITEM = Registry.register(
+        Registries.ITEM,
+        SPRAY_PAINT_GRAY_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(SPRAY_PAINT_GRAY_ITEM_KEY)
+        )
+    );
+
+
+    static RegistryKey<Item> SPRAY_PAINT_GREEN_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "spray_paint_green_item"));
+    public static Item SPRAY_PAINT_GREEN_ITEM = Registry.register(
+        Registries.ITEM,
+        SPRAY_PAINT_GREEN_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(SPRAY_PAINT_GREEN_ITEM_KEY)
+        )
+    );
+
+
+    static RegistryKey<Item> SPRAY_PAINT_LIGHT_BLUE_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "spray_paint_light_blue_item"));
+    public static Item SPRAY_PAINT_LIGHT_BLUE_ITEM = Registry.register(
+            Registries.ITEM,
+            SPRAY_PAINT_LIGHT_BLUE_ITEM_KEY,
+            new Item(new Item.Settings()
+                    .maxCount(64)
+                    .registryKey(SPRAY_PAINT_LIGHT_BLUE_ITEM_KEY)
+            )
+    );
+
+
+    static RegistryKey<Item> SPRAY_PAINT_LIGHT_GRAY_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "spray_paint_light_gray_item"));
+    public static Item SPRAY_PAINT_LIGHT_GRAY_ITEM = Registry.register(
+        Registries.ITEM,
+        SPRAY_PAINT_LIGHT_GRAY_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(SPRAY_PAINT_LIGHT_GRAY_ITEM_KEY)
+        )
+    );
+
+
+    static RegistryKey<Item> SPRAY_PAINT_LIME_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "spray_paint_lime_item"));
+    public static Item SPRAY_PAINT_LIME_ITEM = Registry.register(
+        Registries.ITEM,
+        SPRAY_PAINT_LIME_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(SPRAY_PAINT_LIME_ITEM_KEY)
+        )
+    );
+
+
+    static RegistryKey<Item> SPRAY_PAINT_MAGENTA_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "spray_paint_magenta_item"));
+    public static Item SPRAY_PAINT_MAGENTA_ITEM = Registry.register(
+        Registries.ITEM,
+        SPRAY_PAINT_MAGENTA_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(SPRAY_PAINT_MAGENTA_ITEM_KEY)
+        )
+    );
+
+
+    static RegistryKey<Item> SPRAY_PAINT_ORANGE_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "spray_paint_orange_item"));
+    public static Item SPRAY_PAINT_ORANGE_ITEM = Registry.register(
+        Registries.ITEM,
+        SPRAY_PAINT_ORANGE_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(SPRAY_PAINT_ORANGE_ITEM_KEY)
+        )
+    );
+
+
+    static RegistryKey<Item> SPRAY_PAINT_PINK_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "spray_paint_pink_item"));
+    public static Item SPRAY_PAINT_PINK_ITEM = Registry.register(
+        Registries.ITEM,
+        SPRAY_PAINT_PINK_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(SPRAY_PAINT_PINK_ITEM_KEY)
+        )
+    );
+
+
+    static RegistryKey<Item> SPRAY_PAINT_PURPLE_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "spray_paint_purple_item"));
+    public static Item SPRAY_PAINT_PURPLE_ITEM = Registry.register(
+        Registries.ITEM,
+        SPRAY_PAINT_PURPLE_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(SPRAY_PAINT_PURPLE_ITEM_KEY)
+        )
+    );
+
+
+    static RegistryKey<Item> SPRAY_PAINT_RED_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "spray_paint_red_item"));
+    public static Item SPRAY_PAINT_RED_ITEM = Registry.register(
+        Registries.ITEM,
+        SPRAY_PAINT_RED_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(SPRAY_PAINT_RED_ITEM_KEY)
+        )
+    );
+
+
+    static RegistryKey<Item> SPRAY_PAINT_WHITE_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "spray_paint_white_item"));
+    public static Item SPRAY_PAINT_WHITE_ITEM = Registry.register(
+        Registries.ITEM,
+        SPRAY_PAINT_WHITE_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(SPRAY_PAINT_WHITE_ITEM_KEY)
+        )
+    );
+
+
+    static RegistryKey<Item> SPRAY_PAINT_YELLOW_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "spray_paint_yellow_item"));
+    public static Item SPRAY_PAINT_YELLOW_ITEM= Registry.register(
+        Registries.ITEM,
+        SPRAY_PAINT_YELLOW_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(SPRAY_PAINT_YELLOW_ITEM_KEY)
+        )
+    );
+
+
+
     private ModItems() { }
 
     public static void init() {

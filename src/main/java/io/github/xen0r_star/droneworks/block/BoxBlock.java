@@ -1,14 +1,18 @@
 package io.github.xen0r_star.droneworks.block;
 
 import io.github.xen0r_star.droneworks.registry.OrientableBlock;
+import io.github.xen0r_star.droneworks.screen.BoxScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
 
 public class BoxBlock extends OrientableBlock {
     public BoxBlock(Settings settings) {
@@ -24,8 +28,11 @@ public class BoxBlock extends OrientableBlock {
         if (!world.isClient) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
 
-            if (blockEntity instanceof NamedScreenHandlerFactory factory) {
-                player.openHandledScreen(factory);
+            if (blockEntity instanceof BoxBlockEntity factory) {
+               player.openHandledScreen(new SimpleNamedScreenHandlerFactory(
+                    (syncId, inv, p) -> new BoxScreenHandler(syncId, inv),
+                    Text.literal("Drone")
+               ));
             }
         }
 

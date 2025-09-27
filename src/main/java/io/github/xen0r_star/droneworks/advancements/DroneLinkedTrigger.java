@@ -9,8 +9,7 @@
 //import net.minecraft.server.network.ServerPlayerEntity;
 //import net.minecraft.util.Identifier;
 //
-//public class DroneLinkedTrigger
-//        extends SimpleCriterionTrigger<DroneLinkedTrigger.Instance> {
+//public class DroneLinkedTrigger extends SimpleCriterionTrigger<DroneLinkedTrigger.Instance> {
 //
 //    private static final Identifier ID =
 //            new Identifier("droneworks", "drone_linked_to_station");

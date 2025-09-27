@@ -7,9 +7,11 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+
 
 @Environment(EnvType.CLIENT)
 public class BoxScreen extends HandledScreen<BoxScreenHandler> {
@@ -25,6 +27,12 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
     protected void init() {
         super.init();
         this.titleX = (this.backgroundWidth - this.textRenderer.getWidth(this.title)) / 2;
+
+        this.addDrawableChild(
+            ButtonWidget.builder(Text.literal("Start"), btn -> {
+                System.out.println("Box Start button pressed!");
+            }).dimensions(this.width / 2 - 81, this.height / 2 - 23, 73, 18).build()
+        );
     }
 
     @Override

@@ -2,12 +2,15 @@ package io.github.xen0r_star.droneworks.block;
 
 import io.github.xen0r_star.droneworks.screen.BoxScreenHandler;
 import io.github.xen0r_star.droneworks.registry.ModBlockEntities;
+import io.github.xen0r_star.droneworks.screen.StationScreenHandler;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.inventory.Inventories;
@@ -16,7 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;
 
 
-public class BoxBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, Inventory {
+public class BoxBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, Inventory  {
     private final DefaultedList<ItemStack> items = DefaultedList.ofSize(7, ItemStack.EMPTY);
 
     public BoxBlockEntity(BlockPos pos, BlockState state) {
@@ -55,6 +58,25 @@ public class BoxBlockEntity extends BlockEntity implements NamedScreenHandlerFac
         markDirty();
     }
 
+    @Override
+    protected void writeData(WriteView view) {
+        super.writeData(view);
+        Inventories.writeData(view, items);
+    }
+
+    @Override
+    protected void readData(ReadView view) {
+        super.readData(view);
+        Inventories.readData(view, items);
+    }
+
+    @Override
+    public void markDirty() {
+        super.markDirty();
+        if (world != null) {
+            world.updateListeners(pos, getCachedState(), getCachedState(), 3);
+        }
+    }
 
     @Override
     public boolean canPlayerUse(PlayerEntity player) {

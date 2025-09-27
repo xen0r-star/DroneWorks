@@ -15,7 +15,7 @@ public class StationScreenHandler extends ScreenHandler {
 
     public StationScreenHandler(int syncId, PlayerInventory playerInventory) {
         super(ModScreenHandlers.STATION_SCREEN_HANDLER, syncId);
-        this.stationInventory = new SimpleInventory(15);
+        this.stationInventory = new SimpleInventory(18);
 
         addBlockInventorySlots();
         addPlayerInventorySlots(playerInventory);
@@ -43,6 +43,10 @@ public class StationScreenHandler extends ScreenHandler {
                 this.addSlot(new Slot(stationInventory, slotIndex, slotX, slotY));
             }
         }
+
+        this.addSlot(new Slot(stationInventory, 15, 8, 17));
+        this.addSlot(new Slot(stationInventory, 16, 8, 35));
+        this.addSlot(new Slot(stationInventory, 17, 8, 53));
     }
 
     private void addPlayerInventorySlots(PlayerInventory playerInventory) {
