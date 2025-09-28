@@ -81,21 +81,21 @@ public class BoxScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(boxInventory, 1, 94,  44) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isOf(Items.REDSTONE);
+                return stack.isOf(ModItems.PROPELLER_ITEM);
             }
         });
 
         this.addSlot(new Slot(boxInventory, 2, 116, 44) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isOf(Items.REDSTONE);
+                return stack.isOf(ModItems.BODY_ITEM);
             }
         });
 
         this.addSlot(new Slot(boxInventory, 3, 138, 44) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isOf(Items.REDSTONE);
+                return stack.isOf(ModItems.PROPELLER_ITEM);
             }
         });
 

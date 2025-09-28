@@ -12,21 +12,28 @@ public class DroneModel extends EntityModel<EntityRenderState> {
     public static final EntityModelLayer MODEL_LAYER = new EntityModelLayer(
             Identifier.of("droneworks", "drone"), "main"
     );
+    public final ModelPart body;
+    public final ModelPart propeller1;
+    public final ModelPart propeller2;
+    public final ModelPart antenna;
+    public final ModelPart toolSocket;
+    public final ModelPart eye;
+    public final ModelPart chargeSocket;
 
 
     public DroneModel(ModelPart root) {
         super(root);
 
         ModelPart drone = root.getChild("Drone");
-		drone.getChild("Body");
-        ModelPart PropellerElement = drone.getChild("PropellerElement");
-		PropellerElement.getChild("Propeller");
-        ModelPart PropellerElement2 = drone.getChild("PropellerElement2");
-		PropellerElement2.getChild("Propeller2");
-		drone.getChild("toolSocket");
-		drone.getChild("Eye");
-		drone.getChild("ChargeSocket");
-		drone.getChild("Antenna");
+		this.body = drone.getChild("Body");
+        this.propeller1 = drone.getChild("PropellerElement");
+        this.propeller1.getChild("Propeller");
+        this.propeller2 = drone.getChild("PropellerElement2");
+        this.propeller2.getChild("Propeller2");
+		this.toolSocket = drone.getChild("toolSocket");
+		this.eye = drone.getChild("Eye");
+		this.chargeSocket = drone.getChild("ChargeSocket");
+		this.antenna = drone.getChild("Antenna");
 		root.getChild("octagon");
 	}
 
@@ -124,6 +131,10 @@ public class DroneModel extends EntityModel<EntityRenderState> {
             this.root.yaw = livingState.bodyYaw * ((float)Math.PI / 180F);
             this.root.pitch = livingState.pitch * ((float)Math.PI / 180F);
         }
+
+        chargeSocket.visible = body.visible;
+        eye.visible = body.visible;
+        toolSocket.visible = body.visible;
     }
 
 

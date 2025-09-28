@@ -1,12 +1,15 @@
 package io.github.xen0r_star.droneworks.entity;
 
 import io.github.xen0r_star.droneworks.block.StationBlockEntity;
+import io.github.xen0r_star.droneworks.client.model.DroneModel;
 import io.github.xen0r_star.droneworks.client.renderer.DRONE_COLOR;
+import io.github.xen0r_star.droneworks.client.renderer.DroneRenderer;
 import io.github.xen0r_star.droneworks.entity.goal.DroneHarvestCropsGoal;
 import io.github.xen0r_star.droneworks.entity.goal.DroneReturnToStationGoal;
 import io.github.xen0r_star.droneworks.entity.goal.DroneTillAndPlantGoal;
 import io.github.xen0r_star.droneworks.registry.ModItems;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.pathing.BirdNavigation;
 import net.minecraft.entity.ai.pathing.EntityNavigation;
@@ -19,7 +22,9 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.ai.goal.LookAroundGoal;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.util.math.BlockPos;
@@ -30,6 +35,7 @@ public class DroneEntity extends PathAwareEntity {
     private BlockPos linkedStationPos;
     private int particleCooldown = 0;
     private final SimpleInventory inventory = new SimpleInventory(27); // 27 slots
+
     private static final TrackedData<Integer> COLOR =
             DataTracker.registerData(DroneEntity.class, TrackedDataHandlerRegistry.INTEGER);
 

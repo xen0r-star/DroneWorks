@@ -1,12 +1,15 @@
 package io.github.xen0r_star.droneworks.client.screen;
 
 import io.github.xen0r_star.droneworks.Main;
+import io.github.xen0r_star.droneworks.client.model.DroneModel;
 import io.github.xen0r_star.droneworks.client.renderer.DRONE_COLOR;
+import io.github.xen0r_star.droneworks.client.renderer.DroneRenderer;
 import io.github.xen0r_star.droneworks.entity.DroneEntity;
 import io.github.xen0r_star.droneworks.registry.ModEntities;
 import io.github.xen0r_star.droneworks.screen.BoxScreenHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -22,7 +25,7 @@ import org.joml.Vector3f;
 @Environment(EnvType.CLIENT)
 public class BoxScreen extends HandledScreen<BoxScreenHandler> {
     private static final Identifier TEXTURE = Identifier.of(Main.MOD_ID, "textures/gui/container/box_block1.png");
-    private Float counter = 0.0F;
+    public ButtonWidget startButton;
 
     public BoxScreen(BoxScreenHandler handler, PlayerInventory inv, Text title) {
         super(handler, inv, title);
@@ -35,13 +38,11 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
         super.init();
         this.titleX = (this.backgroundWidth - this.textRenderer.getWidth(this.title)) / 2;
 
-        this.addDrawableChild(
-            ButtonWidget.builder(Text.literal("Start"), btn -> {
-                System.out.println("Box Start button pressed!");
-                counter -= 0.1F;
-                System.out.println(counter);
-            }).dimensions(this.width / 2 - 81, this.height / 2 - 23, 73, 18).build()
-        );
+        startButton = ButtonWidget.builder(Text.translatable("button.text.box"), btn -> {
+            System.out.println("Box Start button pressed!");
+        }).dimensions(this.width / 2 - 81, this.height / 2 - 23, 73, 18).build();
+
+        this.addDrawableChild(startButton);
     }
 
     @Override
@@ -50,26 +51,41 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
 
         if (this.client != null && this.client.world != null) {
             DroneEntity drone = new DroneEntity(ModEntities.DRONE, this.client.world);
+            DroneRenderer renderer = (DroneRenderer) MinecraftClient.getInstance()
+                    .getEntityRenderDispatcher()
+                    .getRenderer(drone);
+            DroneModel model = renderer.getModel();
 
             drone.setColor(DRONE_COLOR.DEFAULT);
             drone.setAngles(180, 180);
             drone.setPos(drone.getX(), drone.getY() + 0.5, drone.getZ());
 
 
+            model.antenna.visible =    !this.handler.getSlot(0).getStack().isEmpty();
+            model.propeller1.visible = !this.handler.getSlot(1).getStack().isEmpty();
+            model.body.visible =       !this.handler.getSlot(2).getStack().isEmpty();
+            model.propeller2.visible = !this.handler.getSlot(3).getStack().isEmpty();
+
+
             int x1 = this.width / 2 - 80;
             int y1 = this.height / 2 - 76;
             int x2 = x1 + 71;
-            int y2 = y1 + 49;
-            Vector3f droneTranslation = new Vector3f(0.0F, counter, 0.0F);
-            Quaternionf droneRotation = (new Quaternionf()).rotationXYZ(1.4F, 0.0F, 0.0F);
+            int y2 = y1 + 41;
+            Vector3f droneTranslation = new Vector3f(0.45F, -1.0F, 0.0F);
+            Quaternionf droneRotation = (new Quaternionf()).rotationXYZ(1.7F, 0.0F, 0.3F);
 
             InventoryScreen.drawEntity(context,
                 x1, y1,
                 x2, y2,
-                30.0f,
+                35.0f,
                 droneTranslation, droneRotation,
                 null, drone
             );
+
+            context.fill(x1, y1 + 48, x2 - 71, y1 + 50, 0xFF00FF00);
+
+            startButton.active = allFilled();
+            System.out.println(allFilled());
         }
     }
 
@@ -100,5 +116,18 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
         int invX = 8;
         int invY = this.backgroundHeight - 94 + 10;
         context.drawText(this.textRenderer, this.playerInventoryTitle, invX, invY, 4210752, false);
+    }
+
+    private boolean allFilled() {
+        boolean allFilled = true;
+
+        for (int i = 0; i < 7; i++) {
+            if (handler.getSlot(i).getStack().isEmpty()) {
+                allFilled = false;
+                break;
+            }
+        }
+
+        return allFilled;
     }
 }

@@ -31,6 +31,26 @@ public final class ModItems {
         )
     );
 
+    static RegistryKey<Item> BODY_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "body_item"));
+    public static Item BODY_ITEM = Registry.register(
+        Registries.ITEM,
+        BODY_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(BODY_ITEM_KEY)
+        )
+    );
+
+    static RegistryKey<Item> PROPELLER_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "propeller_item"));
+    public static Item PROPELLER_ITEM = Registry.register(
+        Registries.ITEM,
+        PROPELLER_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(PROPELLER_ITEM_KEY)
+        )
+    );
+
     static RegistryKey<Item> BATTERY_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "battery_item"));
     public static Item BATTERY_ITEM = Registry.register(
         Registries.ITEM,

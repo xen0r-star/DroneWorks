@@ -23,6 +23,8 @@ public class ModItemGroups {
                 entries.add(ModItems.BATTERY_ITEM);
                 entries.add(ModItems.ANTENNA_ITEM);
                 entries.add(ModItems.CORE_ITEM);
+                entries.add(ModItems.BODY_ITEM);
+                entries.add(ModItems.PROPELLER_ITEM);
 
                 entries.add(ModItems.SPRAY_PAINT_BLACK_ITEM);
                 entries.add(ModItems.SPRAY_PAINT_BLUE_ITEM);
