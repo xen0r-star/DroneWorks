@@ -63,8 +63,8 @@ public class StationBlockEntity extends BlockEntity implements NamedScreenHandle
         super.writeData(view);
         if (linkedDroneUuid != null) {
             view.put("LinkedDrone", Uuids.INT_STREAM_CODEC, linkedDroneUuid);
-            // System.out.println("[StationBE] writeData UUID=" + linkedDroneUuid);
         }
+        Inventories.writeData(view, items);
     }
 
     @Override
@@ -73,9 +73,9 @@ public class StationBlockEntity extends BlockEntity implements NamedScreenHandle
         view.read("LinkedDrone", Uuids.INT_STREAM_CODEC)
             .map(uuid -> {
                 linkedDroneUuid = uuid;
-                // System.out.println("[StationBE] readData UUID=" + linkedDroneUuid);
                 return linkedDroneUuid;
             });
+        Inventories.readData(view, items);
     }
 
 

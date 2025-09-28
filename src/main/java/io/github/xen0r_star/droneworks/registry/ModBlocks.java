@@ -6,6 +6,9 @@ import io.github.xen0r_star.droneworks.block.StationBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.MapColor;
+import net.minecraft.block.enums.NoteBlockInstrument;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -16,7 +19,11 @@ public final class ModBlocks {
         "box_block",
         BoxBlock::new,
         Block.Settings.copy(Blocks.CRAFTING_TABLE)
+                .strength(2.0F, 3.0F)
+                .sounds(BlockSoundGroup.WOOD)
+                .burnable()
     );
+
     public static final Block STATION_BLOCK = register(
         "station_block",
         StationBlock::new,

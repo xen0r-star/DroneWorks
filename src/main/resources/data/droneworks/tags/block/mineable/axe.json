@@ -1,4 +1,5 @@
 {
+  "replace": false,
   "values": [
     "droneworks:box_block"
   ]

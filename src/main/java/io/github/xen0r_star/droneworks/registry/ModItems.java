@@ -41,6 +41,16 @@ public final class ModItems {
         )
     );
 
+    static RegistryKey<Item> CORE_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "core_item"));
+    public static Item CORE_ITEM = Registry.register(
+        Registries.ITEM,
+        CORE_ITEM_KEY,
+        new Item(new Item.Settings()
+            .maxCount(64)
+            .registryKey(CORE_ITEM_KEY)
+        )
+    );
+
     static RegistryKey<Item> ANTENNA_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "antenna_item"));
     public static Item ANTENNA_ITEM = Registry.register(
         Registries.ITEM,

@@ -1,7 +1,9 @@
 package io.github.xen0r_star.droneworks.block;
 
-import io.github.xen0r_star.droneworks.Main;
+import io.github.xen0r_star.droneworks.client.renderer.DRONE_COLOR;
 import io.github.xen0r_star.droneworks.entity.DroneEntity;
+import io.github.xen0r_star.droneworks.registry.ModCriteria;
+import io.github.xen0r_star.droneworks.registry.ModEntities;
 import io.github.xen0r_star.droneworks.registry.ModItems;
 import io.github.xen0r_star.droneworks.registry.OrientableBlock;
 import net.minecraft.block.Block;
@@ -10,7 +12,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.text.Text;
@@ -54,11 +56,11 @@ public class StationBlock extends OrientableBlock {
                 if (stack.isOf(ModItems.DRONE_ITEM)) {
                     if (station.hasLinkedDrone()) {
                         UUID uuid = station.getLinkedDroneUuid();
-                        Entity linked = ((ServerWorld) world).getEntity(uuid);
+                        Entity linked = world.getEntity(uuid);
 
                         if (linked instanceof DroneEntity) {
                             player.sendMessage(
-                                    Text.literal("message.drone.already_linked")
+                                    Text.translatable("message.drone.already_linked")
                                             .styled(style -> style.withColor(Formatting.RED)),
                                     true
                             );
@@ -76,7 +78,7 @@ public class StationBlock extends OrientableBlock {
                         default -> 0f;
                     };
 
-                    DroneEntity drone = new DroneEntity(Main.DRONE, world);
+                    DroneEntity drone = new DroneEntity(ModEntities.DRONE, world);
                     drone.refreshPositionAndAngles(
                             pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5,
                             facing, 0
@@ -84,16 +86,20 @@ public class StationBlock extends OrientableBlock {
                     drone.setPersistent();
                     drone.setLinkedStationPos(station.getPos());
                     world.spawnEntity(drone);
+                    drone.setColor(DRONE_COLOR.DEFAULT);
 
                     station.setLinkedDrone(drone);
+                    if (player instanceof ServerPlayerEntity serverPlayer) {
+                        ModCriteria.DRONE_LINKED.trigger(serverPlayer, drone);
+                    }
 
                     BlockState newState = state.with(StationBlock.LINKED, true);
                     world.setBlockState(pos, newState, 3);
 
                     player.sendMessage(
-                            Text.literal("message.drone.linked")
-                                    .styled(style -> style.withColor(Formatting.GREEN)),
-                            true
+                        Text.translatable("message.drone.linked")
+                            .styled(style -> style.withColor(Formatting.GREEN)),
+                        true
                     );
 
                     if (!player.getAbilities().creativeMode) {

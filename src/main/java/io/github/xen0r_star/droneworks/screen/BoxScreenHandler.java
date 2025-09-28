@@ -3,6 +3,7 @@ package io.github.xen0r_star.droneworks.screen;
 import io.github.xen0r_star.droneworks.block.BoxBlockEntity;
 import io.github.xen0r_star.droneworks.registry.ModItems;
 import io.github.xen0r_star.droneworks.registry.ModScreenHandlers;
+import io.github.xen0r_star.droneworks.registry.ModTags;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -101,24 +102,23 @@ public class BoxScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(boxInventory, 4, 94,  66) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isOf(Items.REDSTONE);
+                return stack.isOf(ModItems.BATTERY_ITEM);
             }
         });
 
         this.addSlot(new Slot(boxInventory, 5, 116, 66) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isOf(ModItems.BATTERY_ITEM);
+                return stack.isOf(ModItems.CORE_ITEM);
             }
         });
 
         this.addSlot(new Slot(boxInventory, 6, 138, 66) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isOf(Items.REDSTONE);
+                return stack.isIn(ModTags.SPRAY_PAINTS);
             }
         });
-
     }
 
     private void addPlayerInventorySlots(PlayerInventory playerInventory) {

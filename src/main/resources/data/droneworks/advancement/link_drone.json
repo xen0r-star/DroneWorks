@@ -7,7 +7,7 @@
   },
   "display": {
     "icon": {
-      "id": "droneworks:drone_item",
+      "id": "minecraft:redstone_torch",
       "count": 1
     },
     "title": {

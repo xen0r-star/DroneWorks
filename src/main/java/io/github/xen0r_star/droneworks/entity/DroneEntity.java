@@ -1,6 +1,7 @@
 package io.github.xen0r_star.droneworks.entity;
 
 import io.github.xen0r_star.droneworks.block.StationBlockEntity;
+import io.github.xen0r_star.droneworks.client.renderer.DRONE_COLOR;
 import io.github.xen0r_star.droneworks.entity.goal.DroneHarvestCropsGoal;
 import io.github.xen0r_star.droneworks.entity.goal.DroneReturnToStationGoal;
 import io.github.xen0r_star.droneworks.entity.goal.DroneTillAndPlantGoal;
@@ -12,6 +13,9 @@ import net.minecraft.entity.ai.pathing.EntityNavigation;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.ai.goal.LookAroundGoal;
@@ -26,6 +30,8 @@ public class DroneEntity extends PathAwareEntity {
     private BlockPos linkedStationPos;
     private int particleCooldown = 0;
     private final SimpleInventory inventory = new SimpleInventory(27); // 27 slots
+    private static final TrackedData<Integer> COLOR =
+            DataTracker.registerData(DroneEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
 
     public DroneEntity(EntityType<? extends PathAwareEntity> type, World world) {
@@ -33,6 +39,12 @@ public class DroneEntity extends PathAwareEntity {
         this.moveControl = new DroneMoveControl(this);
         this.setNoGravity(true);
         this.setPersistent();
+    }
+
+    @Override
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(COLOR, 0);
     }
 
     public static DefaultAttributeContainer.Builder createMobAttributes() {
@@ -131,4 +143,14 @@ public class DroneEntity extends PathAwareEntity {
     public SimpleInventory getInventory() {
         return inventory;
     }
+
+    // Color
+    public void setColor(DRONE_COLOR color) {
+        this.dataTracker.set(COLOR, color.getValue());
+    }
+
+    public DRONE_COLOR getColor() {
+        return DRONE_COLOR.fromValue(this.dataTracker.get(COLOR));
+    }
+
 }
