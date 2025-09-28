@@ -27,12 +27,8 @@ public class BoxBlock extends OrientableBlock {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-
-            if (blockEntity instanceof BoxBlockEntity factory) {
-               player.openHandledScreen(new SimpleNamedScreenHandlerFactory(
-                    (syncId, inv, p) -> new BoxScreenHandler(syncId, inv),
-                    Text.literal("Drone")
-               ));
+            if (blockEntity instanceof BoxBlockEntity box) {
+                player.openHandledScreen(box);
             }
         }
 

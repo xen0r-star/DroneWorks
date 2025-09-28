@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " R ",
+    "iTi"
+  ],
+  "key": {
+    "#": "minecraft:red_stained_glass",
+    "R": "minecraft:redstone_torch",
+    "T": "minecraft:redstone",
+    "i": "minecraft:iron_ingot"
+  },
+  "result": {
+    "count": 1,
+    "id": "droneworks:antenna_item"
+  }
+}

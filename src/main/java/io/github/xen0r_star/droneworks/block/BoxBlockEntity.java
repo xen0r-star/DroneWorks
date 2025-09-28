@@ -1,8 +1,8 @@
 package io.github.xen0r_star.droneworks.block;
 
+import io.github.xen0r_star.droneworks.registry.ModItems;
 import io.github.xen0r_star.droneworks.screen.BoxScreenHandler;
 import io.github.xen0r_star.droneworks.registry.ModBlockEntities;
-import io.github.xen0r_star.droneworks.screen.StationScreenHandler;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,13 +17,84 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.world.World;
 
 
 public class BoxBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, Inventory  {
     private final DefaultedList<ItemStack> items = DefaultedList.ofSize(7, ItemStack.EMPTY);
 
+    private int progress = 0;
+    private boolean crafting = false;
+    private boolean ready = false;
+    private final int TIME_CRAFTING = 600; // 30 sec * 20 ticks/sec
+
+
     public BoxBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.BOX_BLOCK_ENTITY, pos, state);
+    }
+
+    public boolean allSlotsFilled() {
+        return items.stream().noneMatch(ItemStack::isEmpty);
+    }
+
+    public void startCrafting() {
+        if (allSlotsFilled()) {
+            crafting = true;
+            progress = 0;
+            ready = false;
+            markDirty();
+        }
+    }
+
+    public static void tick(World world, BlockPos pos, BlockState state, BoxBlockEntity be) {
+        if (!world.isClient) {
+            be.tick();
+        }
+    }
+
+    public void tick() {
+        if (crafting) {
+            progress++;
+            if (progress >= TIME_CRAFTING) {
+                crafting = false;
+                ready = true;
+                progress = TIME_CRAFTING;
+                markDirty();
+            }
+        }
+    }
+
+    public boolean canRetrieve() {
+        return ready;
+    }
+
+    public void retrieve(PlayerEntity player) {
+        if (ready) {
+            ItemStack drone = new ItemStack(ModItems.DRONE_ITEM);
+            if (!player.getInventory().insertStack(drone)) {
+                player.dropItem(drone, false);
+            }
+            ready = false;
+
+            items.clear();
+            markDirty();
+        }
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public int getProgressMax() {
+        return TIME_CRAFTING;
+    }
+
+    public boolean getCrafting() {
+        return crafting;
+    }
+
+    public boolean getReady() {
+        return ready;
     }
 
 
@@ -85,6 +156,7 @@ public class BoxBlockEntity extends BlockEntity implements NamedScreenHandlerFac
 
     @Override public void clear() {
         items.clear();
+        markDirty();
     }
 
     @Override
@@ -94,7 +166,6 @@ public class BoxBlockEntity extends BlockEntity implements NamedScreenHandlerFac
 
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        return new BoxScreenHandler(syncId, playerInventory);
+        return new BoxScreenHandler(syncId, playerInventory, this);
     }
 }
-

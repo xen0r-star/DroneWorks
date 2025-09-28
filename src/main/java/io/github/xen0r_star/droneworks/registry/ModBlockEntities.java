@@ -3,6 +3,7 @@ package io.github.xen0r_star.droneworks.registry;
 import io.github.xen0r_star.droneworks.Main;
 import io.github.xen0r_star.droneworks.block.BoxBlockEntity;
 import io.github.xen0r_star.droneworks.block.StationBlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.Identifier;
 import net.minecraft.registry.Registry;
@@ -20,6 +21,9 @@ public class ModBlockEntities {
             Identifier.of(Main.MOD_ID, "box_block_entity"),
             FabricBlockEntityTypeBuilder.create(BoxBlockEntity::new, ModBlocks.BOX_BLOCK).build()
         );
+
+        BlockEntityTicker<BoxBlockEntity> ticker = (world, pos, state, be) -> BoxBlockEntity.tick(world, pos, state, be);
+
 
         STATION_BLOCK_ENTITY = Registry.register(
             Registries.BLOCK_ENTITY_TYPE,

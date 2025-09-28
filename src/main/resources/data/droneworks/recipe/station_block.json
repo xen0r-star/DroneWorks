@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iRi",
+    "TGO",
+    "iii"
+  ],
+  "key": {
+    "i": "minecraft:iron_ingot",
+    "R": "minecraft:redstone_torch",
+    "T": "#droneworks:chests",
+    "G": "minecraft:golden_hoe",
+    "O": "minecraft:observer"
+  },
+  "result": {
+    "count": 1,
+    "id": "droneworks:station_block"
+  }
+}

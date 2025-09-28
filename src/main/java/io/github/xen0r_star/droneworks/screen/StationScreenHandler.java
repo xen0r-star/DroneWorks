@@ -11,19 +11,27 @@ import net.minecraft.screen.slot.Slot;
 
 
 public class StationScreenHandler extends ScreenHandler {
-    private final Inventory stationInventory;
+    private final Inventory inventory;
 
     public StationScreenHandler(int syncId, PlayerInventory playerInventory) {
+        this(syncId, playerInventory, new SimpleInventory(18));
+    }
+
+    public StationScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
         super(ModScreenHandlers.STATION_SCREEN_HANDLER, syncId);
-        this.stationInventory = new SimpleInventory(18);
+        this.inventory = inventory;
+        checkSize(inventory, 18);
+        inventory.onOpen(playerInventory.player);
 
         addBlockInventorySlots();
         addPlayerInventorySlots(playerInventory);
     }
 
+    
+
     @Override
     public boolean canUse(PlayerEntity player) {
-        return true;
+        return this.inventory.canPlayerUse(player);
     }
 
     @Override
@@ -40,13 +48,13 @@ public class StationScreenHandler extends ScreenHandler {
                 int slotIndex = col + row * 5;
                 int slotX = x + col * 18;
                 int slotY = y + row * 18;
-                this.addSlot(new Slot(stationInventory, slotIndex, slotX, slotY));
+                this.addSlot(new Slot(inventory, slotIndex, slotX, slotY));
             }
         }
 
-        this.addSlot(new Slot(stationInventory, 15, 8, 17));
-        this.addSlot(new Slot(stationInventory, 16, 8, 35));
-        this.addSlot(new Slot(stationInventory, 17, 8, 53));
+        this.addSlot(new Slot(inventory, 15, 8, 17));
+        this.addSlot(new Slot(inventory, 16, 8, 35));
+        this.addSlot(new Slot(inventory, 17, 8, 53));
     }
 
     private void addPlayerInventorySlots(PlayerInventory playerInventory) {

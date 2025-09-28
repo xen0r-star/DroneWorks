@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "RCO",
+    "iHi"
+  ],
+  "key": {
+    "i": "minecraft:iron_ingot",
+    "R": "minecraft:redstone",
+    "C": "#droneworks:chests",
+    "O": "minecraft:observer",
+    "H": "minecraft:hopper"
+  },
+  "result": {
+    "count": 1,
+    "id": "droneworks:casing_item"
+  }
+}

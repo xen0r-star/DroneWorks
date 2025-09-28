@@ -3,7 +3,8 @@
   "credit": "Made with Blockbench",
   "texture_size": [64, 64],
   "textures": {
-    "1": "droneworks:item/body_item"
+    "1": "droneworks:item/casing_item",
+    "particle": "droneworks:item/casing_item"
   },
   "elements": [
     {

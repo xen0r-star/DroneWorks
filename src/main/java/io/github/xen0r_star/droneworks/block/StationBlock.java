@@ -110,6 +110,7 @@ public class StationBlock extends OrientableBlock {
 
                 } else {
                     player.openHandledScreen(station);
+                    return ActionResult.SUCCESS;
                 }
             }
         }

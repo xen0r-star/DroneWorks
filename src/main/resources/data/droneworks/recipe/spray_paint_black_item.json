@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#C#",
+    "#G#",
+    "###"
+  ],
+  "key": {
+    "#": "minecraft:iron_nugget",
+    "C": "minecraft:black_dye",
+    "G": "minecraft:glass_bottle"
+  },
+  "result": {
+    "id": "droneworks:spray_paint_black_item",
+    "count": 1
+  }
+}

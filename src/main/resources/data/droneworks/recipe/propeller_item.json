@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "iWi",
+    "iRi"
+  ],
+  "key": {
+    "i": "minecraft:iron_ingot",
+    "W": "minecraft:wind_charge",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "count": 1,
+    "id": "droneworks:propeller_item"
+  }
+}

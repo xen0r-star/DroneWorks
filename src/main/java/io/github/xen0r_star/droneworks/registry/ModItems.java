@@ -31,13 +31,13 @@ public final class ModItems {
         )
     );
 
-    static RegistryKey<Item> BODY_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "body_item"));
-    public static Item BODY_ITEM = Registry.register(
+    static RegistryKey<Item> CASING_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "casing_item"));
+    public static Item CASING_ITEM = Registry.register(
         Registries.ITEM,
-        BODY_ITEM_KEY,
+            CASING_ITEM_KEY,
         new Item(new Item.Settings()
             .maxCount(64)
-            .registryKey(BODY_ITEM_KEY)
+            .registryKey(CASING_ITEM_KEY)
         )
     );
 

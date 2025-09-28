@@ -10,25 +10,61 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
 
 public class BoxScreenHandler extends ScreenHandler {
-    private final Inventory boxInventory;
+    private final Inventory inventory;
 
     public BoxScreenHandler(int syncId, PlayerInventory playerInventory) {
+        this(syncId, playerInventory, new SimpleInventory(7));
+    }
+
+    public BoxScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
         super(ModScreenHandlers.BOX_SCREEN_HANDLER, syncId);
-        this.boxInventory = new SimpleInventory(7);
+        this.inventory = inventory;
+        checkSize(inventory, 7);
+        inventory.onOpen(playerInventory.player);
 
         addBlockInventorySlots();
         addPlayerInventorySlots(playerInventory);
     }
 
+
+    public boolean isCraftButtonActive() {
+        System.out.println("Ready111");
+        if (this.inventory instanceof BoxBlockEntity box) {
+            System.out.println("dddddddd");
+            return !box.getCrafting() && !box.getReady() && box.allSlotsFilled();
+        }
+        return false;
+    }
+
+    public boolean isRetrieveButtonActive() {
+        if (this.inventory instanceof BoxBlockEntity station) {
+            return station.canRetrieve();
+        }
+        return false;
+    }
+
+//    public void startCraftingServerSide() {
+//        blockEntity.startCrafting();
+//    }
+//
+//    public void retrieveServerSide(PlayerEntity player) {
+//        blockEntity.retrieve(player);
+//    }
+//
+//    public BoxBlockEntity getBlockEntity() {
+//        return this.blockEntity;
+//    }
+
+
+
     @Override
     public boolean canUse(PlayerEntity player) {
-        return this.boxInventory.canPlayerUse(player);
+        return this.inventory.canPlayerUse(player);
     }
 
     @Override
@@ -71,52 +107,87 @@ public class BoxScreenHandler extends ScreenHandler {
     }
 
     private void addBlockInventorySlots() {
-        this.addSlot(new Slot(boxInventory, 0, 116, 22) {
+        this.addSlot(new Slot(inventory, 0, 116, 22) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.isOf(ModItems.ANTENNA_ITEM);
             }
+
+            @Override
+            public int getMaxItemCount() {
+                return 1;
+            }
         });
 
-        this.addSlot(new Slot(boxInventory, 1, 94,  44) {
+        this.addSlot(new Slot(inventory, 1, 94,  44) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.isOf(ModItems.PROPELLER_ITEM);
             }
-        });
 
-        this.addSlot(new Slot(boxInventory, 2, 116, 44) {
             @Override
-            public boolean canInsert(ItemStack stack) {
-                return stack.isOf(ModItems.BODY_ITEM);
+            public int getMaxItemCount() {
+                return 1;
             }
         });
 
-        this.addSlot(new Slot(boxInventory, 3, 138, 44) {
+        this.addSlot(new Slot(inventory, 2, 116, 44) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(ModItems.CASING_ITEM);
+            }
+
+            @Override
+            public int getMaxItemCount() {
+                return 1;
+            }
+        });
+
+        this.addSlot(new Slot(inventory, 3, 138, 44) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.isOf(ModItems.PROPELLER_ITEM);
             }
+
+            @Override
+            public int getMaxItemCount() {
+                return 1;
+            }
         });
 
-        this.addSlot(new Slot(boxInventory, 4, 94,  66) {
+        this.addSlot(new Slot(inventory, 4, 94,  66) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.isOf(ModItems.BATTERY_ITEM);
             }
+
+            @Override
+            public int getMaxItemCount() {
+                return 1;
+            }
         });
 
-        this.addSlot(new Slot(boxInventory, 5, 116, 66) {
+        this.addSlot(new Slot(inventory, 5, 116, 66) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.isOf(ModItems.CORE_ITEM);
             }
+
+            @Override
+            public int getMaxItemCount() {
+                return 1;
+            }
         });
 
-        this.addSlot(new Slot(boxInventory, 6, 138, 66) {
+        this.addSlot(new Slot(inventory, 6, 138, 66) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.isIn(ModTags.SPRAY_PAINTS);
+            }
+
+            @Override
+            public int getMaxItemCount() {
+                return 1;
             }
         });
     }

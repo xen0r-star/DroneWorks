@@ -24,7 +24,7 @@ import java.util.UUID;
 
 public class StationBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, Inventory {
     private UUID linkedDroneUuid;
-    private final DefaultedList<ItemStack> items = DefaultedList.ofSize(15, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> items = DefaultedList.ofSize(18, ItemStack.EMPTY);
 
 
     public StationBlockEntity(BlockPos pos, BlockState state) {
@@ -127,6 +127,6 @@ public class StationBlockEntity extends BlockEntity implements NamedScreenHandle
 
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        return new StationScreenHandler(syncId, playerInventory);
+        return new StationScreenHandler(syncId, playerInventory, this);
     }
 }

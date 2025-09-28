@@ -3,7 +3,8 @@
   "credit": "Made with Blockbench",
   "texture_size": [32, 32],
   "textures": {
-    "2": "droneworks:item/propeller_item"
+    "2": "droneworks:item/propeller_item",
+    "particle": "droneworks:item/propeller_item"
   },
   "elements": [
     {

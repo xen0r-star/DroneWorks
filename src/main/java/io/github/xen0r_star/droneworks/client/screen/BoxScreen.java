@@ -1,6 +1,7 @@
 package io.github.xen0r_star.droneworks.client.screen;
 
 import io.github.xen0r_star.droneworks.Main;
+import io.github.xen0r_star.droneworks.block.BoxBlockEntity;
 import io.github.xen0r_star.droneworks.client.model.DroneModel;
 import io.github.xen0r_star.droneworks.client.renderer.DRONE_COLOR;
 import io.github.xen0r_star.droneworks.client.renderer.DroneRenderer;
@@ -25,12 +26,14 @@ import org.joml.Vector3f;
 @Environment(EnvType.CLIENT)
 public class BoxScreen extends HandledScreen<BoxScreenHandler> {
     private static final Identifier TEXTURE = Identifier.of(Main.MOD_ID, "textures/gui/container/box_block1.png");
-    public ButtonWidget startButton;
+    private ButtonWidget startButton;
+    private PlayerInventory inventory;
 
     public BoxScreen(BoxScreenHandler handler, PlayerInventory inv, Text title) {
         super(handler, inv, title);
         this.backgroundWidth = 176;
         this.backgroundHeight = 183;
+        this.inventory = inv;
     }
 
     @Override
@@ -39,7 +42,14 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
         this.titleX = (this.backgroundWidth - this.textRenderer.getWidth(this.title)) / 2;
 
         startButton = ButtonWidget.builder(Text.translatable("button.text.box"), btn -> {
-            System.out.println("Box Start button pressed!");
+            if (handler.isCraftButtonActive()) {
+                System.out.println("ready");
+//                this.handler.startCraftingServerSide();
+
+            } else if (handler.isRetrieveButtonActive()) {
+//                handler.retrieveServerSide(inventory.player);
+            }
+
         }).dimensions(this.width / 2 - 81, this.height / 2 - 23, 73, 18).build();
 
         this.addDrawableChild(startButton);
@@ -82,10 +92,7 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
                 null, drone
             );
 
-            context.fill(x1, y1 + 48, x2 - 71, y1 + 50, 0xFF00FF00);
-
             startButton.active = allFilled();
-            System.out.println(allFilled());
         }
     }
 
@@ -105,6 +112,18 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
 
         ctx.drawTextWithShadow(this.textRenderer, this.title.getString(), x + (this.backgroundWidth - this.textRenderer.getWidth(this.title.getString())) / 2, y + 6, 4210752);
         ctx.drawTextWithShadow(this.textRenderer, this.playerInventoryTitle.getString(), x + 8, y + this.backgroundHeight - 94 + 10, 4210752);
+
+
+        int progressWidth = 0;
+//        if (this.handler.getBlockEntity() instanceof BoxBlockEntity station) {
+//            progressWidth = (int) ((double) station.getProgress() / station.getProgressMax() * 71);
+//        }
+
+        int x1 = this.width / 2 - 80;
+        int y1 = this.height / 2 - 28;
+        int x2 = x1 + progressWidth;
+        int y2 = y1 + 22;
+        ctx.fill(x1, y1, x2, y2, 0xFF00FF00);
     }
 
     @Override
@@ -121,7 +140,7 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
     private boolean allFilled() {
         boolean allFilled = true;
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 6; i++) {
             if (handler.getSlot(i).getStack().isEmpty()) {
                 allFilled = false;
                 break;
