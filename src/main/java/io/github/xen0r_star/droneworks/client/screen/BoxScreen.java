@@ -128,9 +128,7 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
     }
 
     @Override
-    protected void drawForeground(DrawContext context, int mouseX, int mouseY) {
-        super.drawForeground(context, mouseX, mouseY);
-    }
+    protected void drawForeground(DrawContext context, int mouseX, int mouseY) { }
 
     private boolean allFilled() {
         boolean allFilled = true;

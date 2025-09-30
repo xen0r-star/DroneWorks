@@ -8,6 +8,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.StateManager;
@@ -83,7 +84,49 @@ public class StationBlock extends OrientableBlock {
                     drone.setPersistent();
                     drone.setLinkedStationPos(station.getPos());
                     world.spawnEntity(drone);
-                    drone.setColor(DRONE_COLOR.DEFAULT);
+
+                    Item droneColor = stack.getItem();
+                    if (droneColor == ModItems.DRONE_BLUE_ITEM) {
+
+                    }
+
+                    if (droneColor == ModItems.DRONE_WHITE_ITEM) {
+                        drone.setColor(DRONE_COLOR.WHITE);
+                    } else if (droneColor == ModItems.DRONE_LIGHT_GRAY_ITEM) {
+                        drone.setColor(DRONE_COLOR.LIGHT_GRAY);
+                    } else if (droneColor == ModItems.DRONE_GRAY_ITEM) {
+                        drone.setColor(DRONE_COLOR.LIGHT_GRAY);
+                    } else if (droneColor == ModItems.DRONE_BLACK_ITEM) {
+                        drone.setColor(DRONE_COLOR.BLACK);
+                    } else if (droneColor == ModItems.DRONE_BROWN_ITEM) {
+                        drone.setColor(DRONE_COLOR.BROWN);
+                    } else if (droneColor == ModItems.DRONE_RED_ITEM) {
+                        drone.setColor(DRONE_COLOR.RED);
+                    } else if (droneColor == ModItems.DRONE_ORANGE_ITEM) {
+                        drone.setColor(DRONE_COLOR.ORANGE);
+                    } else if (droneColor == ModItems.DRONE_YELLOW_ITEM) {
+                        drone.setColor(DRONE_COLOR.YELLOW);
+                    } else if (droneColor == ModItems.DRONE_LIME_ITEM) {
+                        drone.setColor(DRONE_COLOR.LIME);
+                    } else if (droneColor == ModItems.DRONE_GREEN_ITEM) {
+                        drone.setColor(DRONE_COLOR.GREEN);
+                    } else if (droneColor == ModItems.DRONE_CYAN_ITEM) {
+                        drone.setColor(DRONE_COLOR.CYAN);
+                    } else if (droneColor == ModItems.DRONE_LIGHT_BLUE_ITEM) {
+                        drone.setColor(DRONE_COLOR.LIGHT_BLUE);
+                    } else if (droneColor == ModItems.DRONE_BLUE_ITEM) {
+                        drone.setColor(DRONE_COLOR.BLUE);
+                    } else if (droneColor == ModItems.DRONE_PURPLE_ITEM) {
+                        drone.setColor(DRONE_COLOR.PURPLE);
+                    } else if (droneColor == ModItems.DRONE_MAGENTA_ITEM) {
+                        drone.setColor(DRONE_COLOR.MAGENTA);
+                    } else if (droneColor == ModItems.DRONE_PINK_ITEM) {
+                        drone.setColor(DRONE_COLOR.PINK);
+                    } else {
+                        drone.setColor(DRONE_COLOR.DEFAULT);
+                    }
+
+
 
                     station.setLinkedDrone(drone);
                     if (player instanceof ServerPlayerEntity serverPlayer) {

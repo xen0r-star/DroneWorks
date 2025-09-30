@@ -111,7 +111,7 @@ public class DroneEntity extends PathAwareEntity {
 
 
     public boolean areFirstSixSlotsFull() {
-        for (int i = 0; i < 1 && i < inventory.size(); i++) {
+        for (int i = 0; i < 3 && i < inventory.size(); i++) {
             if (inventory.getStack(i).isEmpty()) return false;
         }
         return true;
