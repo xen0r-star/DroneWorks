@@ -1,6 +1,10 @@
 package io.github.xen0r_star.droneworks.client.model;
 
 import net.minecraft.client.model.*;
+import net.minecraft.client.render.entity.animation.AnimationDefinition;
+import net.minecraft.client.render.entity.animation.AnimationHelper;
+import net.minecraft.client.render.entity.animation.Keyframe;
+import net.minecraft.client.render.entity.animation.Transformation;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.render.entity.state.EntityRenderState;
@@ -136,21 +140,4 @@ public class DroneModel extends EntityModel<EntityRenderState> {
         eye.visible = body.visible;
         toolSocket.visible = body.visible;
     }
-
-
-//    public static final AnimationDefinition beam_start = AnimationDefinition.Builder
-//        .create(0.25F)
-//        .addBoneAnimation("octagon", new Transformation(Transformation.Targets.SCALE,
-//                new Keyframe(0.0F, AnimationHelper.createScalingVector(1.0F, 0.0F, 1.0F), Transformation.Interpolations.LINEAR),
-//                new Keyframe(0.25F, AnimationHelper.createScalingVector(1.0F, 1.0F, 1.0F), Transformation.Interpolations.LINEAR)
-//        ))
-//        .build();
-//
-//    public static final AnimationDefinition beam_end = AnimationDefinition.Builder
-//        .create(0.25F)
-//        .addBoneAnimation("octagon", new Transformation(Transformation.Targets.SCALE,
-//                new Keyframe(0.0F, AnimationHelper.createScalingVector(1.0F, 1.0F, 1.0F), Transformation.Interpolations.LINEAR),
-//                new Keyframe(0.25F, AnimationHelper.createScalingVector(1.0F, 0.0F, 1.0F), Transformation.Interpolations.LINEAR)
-//        ))
-//        .build();
 }

@@ -17,6 +17,7 @@ public class Main implements ModInitializer {
         ModItemGroups.init();
         ModEntities.init();
         ModCriteria.init();
+        ModNetworking.init();
 
         System.out.println("[Droneworks] Mod initialisé");
     }

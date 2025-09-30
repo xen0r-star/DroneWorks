@@ -5,6 +5,7 @@ import io.github.xen0r_star.droneworks.registry.ModBlockEntities;
 import io.github.xen0r_star.droneworks.screen.StationScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -24,7 +25,8 @@ import java.util.UUID;
 
 public class StationBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, Inventory {
     private UUID linkedDroneUuid;
-    private final DefaultedList<ItemStack> items = DefaultedList.ofSize(18, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> items = DefaultedList.ofSize(21, ItemStack.EMPTY);
+    private boolean isPlaying = true;
 
 
     public StationBlockEntity(BlockPos pos, BlockState state) {
@@ -57,6 +59,37 @@ public class StationBlockEntity extends BlockEntity implements NamedScreenHandle
         markDirty();
     }
 
+    public void orderDroneReturnToBase() {
+        if (this.world == null || this.world.isClient()) return;
+
+        if (linkedDroneUuid == null) return;
+
+        Entity entity = this.world.getEntity(linkedDroneUuid);
+        if (entity instanceof DroneEntity drone && !drone.isRemoved()) {
+            drone.forceReturnToStation();
+            drone.setLinkedStationPos(this.getPos());
+        }
+
+        this.setPlaying(false);
+    }
+
+    public void orderDroneResume() {
+        if (this.world == null || this.world.isClient()) return;
+
+        if (linkedDroneUuid == null) return;
+
+        Entity entity = this.world.getEntity(linkedDroneUuid);
+        if (entity instanceof DroneEntity drone && !drone.isRemoved()) {
+            drone.resumeWork();
+        }
+
+        this.setPlaying(true);
+    }
+
+    public DefaultedList<ItemStack> getInventory() {
+        return items;
+    }
+
 
     @Override
     protected void writeData(WriteView view) {
@@ -64,6 +97,7 @@ public class StationBlockEntity extends BlockEntity implements NamedScreenHandle
         if (linkedDroneUuid != null) {
             view.put("LinkedDrone", Uuids.INT_STREAM_CODEC, linkedDroneUuid);
         }
+        view.putBoolean("IsPlaying", this.isPlaying);
         Inventories.writeData(view, items);
     }
 
@@ -75,6 +109,7 @@ public class StationBlockEntity extends BlockEntity implements NamedScreenHandle
                 linkedDroneUuid = uuid;
                 return linkedDroneUuid;
             });
+        this.isPlaying = view.getBoolean("IsPlaying", true);
         Inventories.readData(view, items);
     }
 
@@ -110,6 +145,19 @@ public class StationBlockEntity extends BlockEntity implements NamedScreenHandle
         markDirty();
     }
 
+    public boolean isPlaying() {
+        return isPlaying;
+    }
+
+    public void setPlaying(boolean playing) {
+        this.isPlaying = playing;
+        markDirty();
+
+        if (this.world != null && !this.world.isClient()) {
+            this.world.updateListeners(pos, getCachedState(), getCachedState(), 3);
+        }
+    }
+
 
     @Override
     public boolean canPlayerUse(PlayerEntity player) {
@@ -127,6 +175,7 @@ public class StationBlockEntity extends BlockEntity implements NamedScreenHandle
 
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        return new StationScreenHandler(syncId, playerInventory, this);
+        BlockPos pos = this.getPos();
+        return new StationScreenHandler(syncId, playerInventory, this, this.pos, this.isPlaying());
     }
 }

@@ -1,15 +1,12 @@
 package io.github.xen0r_star.droneworks.entity;
 
 import io.github.xen0r_star.droneworks.block.StationBlockEntity;
-import io.github.xen0r_star.droneworks.client.model.DroneModel;
 import io.github.xen0r_star.droneworks.client.renderer.DRONE_COLOR;
-import io.github.xen0r_star.droneworks.client.renderer.DroneRenderer;
 import io.github.xen0r_star.droneworks.entity.goal.DroneHarvestCropsGoal;
 import io.github.xen0r_star.droneworks.entity.goal.DroneReturnToStationGoal;
 import io.github.xen0r_star.droneworks.entity.goal.DroneTillAndPlantGoal;
 import io.github.xen0r_star.droneworks.registry.ModItems;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.pathing.BirdNavigation;
 import net.minecraft.entity.ai.pathing.EntityNavigation;
@@ -22,10 +19,11 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.ai.goal.LookAroundGoal;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.world.World;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.particle.ParticleTypes;
@@ -34,7 +32,8 @@ import net.minecraft.particle.ParticleTypes;
 public class DroneEntity extends PathAwareEntity {
     private BlockPos linkedStationPos;
     private int particleCooldown = 0;
-    private final SimpleInventory inventory = new SimpleInventory(27); // 27 slots
+    private boolean forcedReturnToStation = false;
+    private final SimpleInventory inventory = new SimpleInventory(10);
 
     private static final TrackedData<Integer> COLOR =
             DataTracker.registerData(DroneEntity.class, TrackedDataHandlerRegistry.INTEGER);
@@ -62,9 +61,9 @@ public class DroneEntity extends PathAwareEntity {
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(1, new DroneHarvestCropsGoal(this, 10, 0.15));
-        this.goalSelector.add(2, new DroneTillAndPlantGoal(this, 10, 0.15));
-        this.goalSelector.add(3, new DroneReturnToStationGoal(this, 1.0));
+        this.goalSelector.add(1, new DroneReturnToStationGoal(this, 0.15));
+        this.goalSelector.add(2, new DroneHarvestCropsGoal(this, 10, 0.15));
+        this.goalSelector.add(3, new DroneTillAndPlantGoal(this, 10, 0.15));
         this.goalSelector.add(4, new LookAroundGoal(this));
     }
 
@@ -84,7 +83,7 @@ public class DroneEntity extends PathAwareEntity {
         super.tick();
 
         if (this.getWorld().isClient) return;
-        
+
         // Particles
         particleCooldown--;
         if (particleCooldown > 0) return;
@@ -111,6 +110,66 @@ public class DroneEntity extends PathAwareEntity {
     }
 
 
+    public boolean areFirstSixSlotsFull() {
+        for (int i = 0; i < 1 && i < inventory.size(); i++) {
+            if (inventory.getStack(i).isEmpty()) return false;
+        }
+        return true;
+    }
+
+    public void dumpInventoryToStation() {
+        if (linkedStationPos == null || this.getWorld().isClient) return;
+
+        BlockEntity be = this.getWorld().getBlockEntity(linkedStationPos);
+        if (!(be instanceof StationBlockEntity station)) return;
+
+        for (int i = 0; i < inventory.size(); i++) {
+            ItemStack stack = inventory.getStack(i);
+            if (stack.isEmpty()) continue;
+
+            ItemStack remaining = insertStackIntoStation(station, stack);
+            if (remaining.isEmpty()) {
+                inventory.setStack(i, ItemStack.EMPTY);
+            } else {
+                inventory.setStack(i, remaining);
+            }
+        }
+
+        station.markDirty();
+    }
+
+    private ItemStack insertStackIntoStation(StationBlockEntity station, ItemStack stack) {
+        if (stack.isEmpty()) return ItemStack.EMPTY;
+
+        ItemStack remaining = stack.copy();
+
+        for (int slot = 0; slot < station.size(); slot++) {
+            ItemStack existing = station.getStack(slot);
+
+            if (existing.isEmpty()) {
+                int toInsert = Math.min(remaining.getCount(), remaining.getMaxCount());
+                ItemStack insert = remaining.copy();
+                insert.setCount(toInsert);
+                station.setStack(slot, insert);
+                remaining.decrement(toInsert);
+                if (remaining.isEmpty()) return ItemStack.EMPTY;
+                else continue;
+            }
+
+            if (ItemStack.areItemsAndComponentsEqual(existing, remaining) && existing.isStackable()) {
+                int canAdd = Math.min(remaining.getCount(), existing.getMaxCount() - existing.getCount());
+                if (canAdd > 0) {
+                    existing.increment(canAdd);
+                    remaining.decrement(canAdd);
+                    station.setStack(slot, existing);
+                    if (remaining.isEmpty()) return ItemStack.EMPTY;
+                }
+            }
+        }
+
+        return remaining;
+    }
+
 
     // Loot
     @Override
@@ -121,7 +180,7 @@ public class DroneEntity extends PathAwareEntity {
         ServerWorld serverWorld = (ServerWorld) this.getWorld();
 
         if (!serverWorld.isClient) {
-            dropItem(serverWorld, ModItems.DRONE_ITEM);
+            dropItem(serverWorld, ModItems.DRONE_DEFAULT_ITEM);
 
             if (linkedStationPos != null) {
                 BlockEntity be = serverWorld.getBlockEntity(linkedStationPos);
@@ -131,6 +190,28 @@ public class DroneEntity extends PathAwareEntity {
             }
 
             this.remove(RemovalReason.KILLED);
+        }
+    }
+
+
+    @Override
+    public void writeData(WriteView view) {
+        super.writeData(view);
+        if (linkedStationPos != null) {
+            view.putInt("LinkedX", linkedStationPos.getX());
+            view.putInt("LinkedY", linkedStationPos.getY());
+            view.putInt("LinkedZ", linkedStationPos.getZ());
+        }
+    }
+
+    @Override
+    public void readData(ReadView view) {
+        super.readData(view);
+        if (view.contains("LinkedX")) {
+            int x = view.getInt("LinkedX", 0);
+            int y = view.getInt("LinkedY", 0);
+            int z = view.getInt("LinkedZ", 0);
+            linkedStationPos = new BlockPos(x, y, z);
         }
     }
 
@@ -159,4 +240,22 @@ public class DroneEntity extends PathAwareEntity {
         return DRONE_COLOR.fromValue(this.dataTracker.get(COLOR));
     }
 
+    // Return to station
+    public void forceReturnToStation() {
+        this.forcedReturnToStation = true;
+    }
+
+    public void clearForcedReturnFlag() {
+        this.forcedReturnToStation = false;
+    }
+
+    public boolean isForcedToReturn() {
+        return this.forcedReturnToStation;
+    }
+
+
+    // Return work
+    public void resumeWork() {
+        this.clearForcedReturnFlag();
+    }
 }

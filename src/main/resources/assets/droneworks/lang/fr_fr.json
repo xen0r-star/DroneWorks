@@ -39,5 +39,11 @@
   "advancements.droneworks.craft_station.title": "Fabriquer une station",
   "advancements.droneworks.craft_station.description": "Vous avez fabriqué une station de drone.",
   "advancements.droneworks.link_drone.title": "Lier un drone",
-  "advancements.droneworks.link_drone.description": "Vous avez lié un drone à une station."
+  "advancements.droneworks.link_drone.description": "Vous avez lié un drone à une station.",
+  "advancements.droneworks.core_item.title": "Élément avancé",
+  "advancements.droneworks.core_item.description": "Tu tiens entre tes mains l'élément le plus avancé du drone!",
+  "advancements.droneworks.drone_item.title": "Collectionneur de Pièces",
+  "advancements.droneworks.drone_item.description": "Rassemblé tous les éléments nécessaires pour construire un drone",
+  "advancements.droneworks.spray_paint.title": "Artiste du Drone",
+  "advancements.droneworks.spray_paint.description": "Pourquoi se contenter du gris?"
 }

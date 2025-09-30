@@ -1,0 +1,43 @@
+{
+  "parent": "droneworks:box_block",
+  "criteria": {
+    "drone_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "droneworks:antenna_item",
+              "droneworks:battery_item",
+              "droneworks:casing_item",
+              "droneworks:propeller_item"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "icon": {
+      "id": "droneworks:casing_item",
+      "count": 1
+    },
+    "title": {
+      "translate": "advancements.droneworks.drone_item.title"
+    },
+    "description": {
+      "translate": "advancements.droneworks.drone_item.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 300
+  },
+  "requirements": [
+    ["drone_item"]
+  ],
+  "sends_telemetry_event": true
+}

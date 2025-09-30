@@ -19,7 +19,6 @@ public class ModItemGroups {
             .entries((context, entries) -> {
                 entries.add(ModItems.BOX_ITEM);
                 entries.add(ModItems.STATION_BLOCK);
-                entries.add(ModItems.DRONE_ITEM);
                 entries.add(ModItems.BATTERY_ITEM);
                 entries.add(ModItems.ANTENNA_ITEM);
                 entries.add(ModItems.CORE_ITEM);
@@ -42,6 +41,23 @@ public class ModItemGroups {
                 entries.add(ModItems.SPRAY_PAINT_RED_ITEM);
                 entries.add(ModItems.SPRAY_PAINT_WHITE_ITEM);
                 entries.add(ModItems.SPRAY_PAINT_YELLOW_ITEM);
+
+                entries.add(ModItems.DRONE_BLACK_ITEM);
+                entries.add(ModItems.DRONE_BLUE_ITEM);
+                entries.add(ModItems.DRONE_BROWN_ITEM);
+                entries.add(ModItems.DRONE_CYAN_ITEM);
+                entries.add(ModItems.DRONE_GRAY_ITEM);
+                entries.add(ModItems.DRONE_GREEN_ITEM);
+                entries.add(ModItems.DRONE_LIGHT_BLUE_ITEM);
+                entries.add(ModItems.DRONE_LIGHT_GRAY_ITEM);
+                entries.add(ModItems.DRONE_LIME_ITEM);
+                entries.add(ModItems.DRONE_MAGENTA_ITEM);
+                entries.add(ModItems.DRONE_ORANGE_ITEM);
+                entries.add(ModItems.DRONE_PINK_ITEM);
+                entries.add(ModItems.DRONE_PURPLE_ITEM);
+                entries.add(ModItems.DRONE_RED_ITEM);
+                entries.add(ModItems.DRONE_WHITE_ITEM);
+                entries.add(ModItems.DRONE_YELLOW_ITEM);
             })
             .build()
     );

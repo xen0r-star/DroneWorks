@@ -39,5 +39,12 @@
   "advancements.droneworks.craft_station.title": "Craft a Station",
   "advancements.droneworks.craft_station.description": "You have crafted a drone station.",
   "advancements.droneworks.link_drone.title": "Link a Drone",
-  "advancements.droneworks.link_drone.description": "You have linked a drone to a station."
+  "advancements.droneworks.link_drone.description": "You have linked a drone to a station.",
+  "advancements.droneworks.core_item.title": "Advanced element",
+  "advancements.droneworks.core_item.description": "You are holding the most advanced drone component in your hands!",
+  "advancements.droneworks.drone_item.title": "Coin Collector",
+  "advancements.droneworks.drone_item.description": "Gathered all the necessary items to build a drone",
+  "advancements.droneworks.spray_paint.title": "Drone Artist",
+  "advancements.droneworks.spray_paint.description": "Why settle for gray?"
+
 }

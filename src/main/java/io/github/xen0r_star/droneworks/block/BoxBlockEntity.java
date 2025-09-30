@@ -70,7 +70,7 @@ public class BoxBlockEntity extends BlockEntity implements NamedScreenHandlerFac
 
     public void retrieve(PlayerEntity player) {
         if (ready) {
-            ItemStack drone = new ItemStack(ModItems.DRONE_ITEM);
+            ItemStack drone = new ItemStack(ModItems.DRONE_DEFAULT_ITEM);
             if (!player.getInventory().insertStack(drone)) {
                 player.dropItem(drone, false);
             }

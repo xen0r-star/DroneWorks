@@ -1,0 +1,38 @@
+{
+  "parent": "droneworks:drone_item",
+  "criteria": {
+    "spray_paint": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "droneworks:spray_paints"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "icon": {
+      "id": "droneworks:spray_paint_cyan_item",
+      "count": 1
+    },
+    "title": {
+      "translate": "advancements.droneworks.spray_paint.title"
+    },
+    "description": {
+      "translate": "advancements.droneworks.spray_paint.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 500
+  },
+  "requirements": [
+    ["spray_paint"]
+  ],
+  "sends_telemetry_event": true
+}

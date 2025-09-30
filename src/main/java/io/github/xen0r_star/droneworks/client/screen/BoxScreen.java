@@ -7,6 +7,7 @@ import io.github.xen0r_star.droneworks.client.renderer.DRONE_COLOR;
 import io.github.xen0r_star.droneworks.client.renderer.DroneRenderer;
 import io.github.xen0r_star.droneworks.entity.DroneEntity;
 import io.github.xen0r_star.droneworks.registry.ModEntities;
+import io.github.xen0r_star.droneworks.registry.ModItems;
 import io.github.xen0r_star.droneworks.screen.BoxScreenHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -17,6 +18,8 @@ import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.joml.Quaternionf;
@@ -66,7 +69,6 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
                     .getRenderer(drone);
             DroneModel model = renderer.getModel();
 
-            drone.setColor(DRONE_COLOR.DEFAULT);
             drone.setAngles(180, 180);
             drone.setPos(drone.getX(), drone.getY() + 0.5, drone.getZ());
 
@@ -75,6 +77,11 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
             model.propeller1.visible = !this.handler.getSlot(1).getStack().isEmpty();
             model.body.visible =       !this.handler.getSlot(2).getStack().isEmpty();
             model.propeller2.visible = !this.handler.getSlot(3).getStack().isEmpty();
+
+
+            ItemStack stack = this.handler.getSlot(6).getStack();
+            DRONE_COLOR color = DRONE_COLOR.fromItem(stack.getItem());
+            if (color != null) drone.setColor(color);
 
 
             int x1 = this.width / 2 - 80;

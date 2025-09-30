@@ -1,0 +1,38 @@
+{
+  "parent": "droneworks:drone_item",
+  "criteria": {
+    "core_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": ["droneworks:drone_item"]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "icon": {
+      "id": "droneworks:core_item",
+      "count": 1
+    },
+    "title": {
+      "translate": "advancements.droneworks.core_item.title"
+    },
+    "description": {
+      "translate": "advancements.droneworks.core_item.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 500
+  },
+  "requirements": [
+    ["core_item"]
+  ],
+  "sends_telemetry_event": true
+}

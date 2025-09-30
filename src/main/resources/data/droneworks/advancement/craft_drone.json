@@ -1,5 +1,5 @@
 {
-  "parent": "droneworks:box_block",
+  "parent": "droneworks:core_item",
   "criteria": {
     "crafted_drone": {
       "conditions": {

@@ -53,7 +53,7 @@ public class StationBlock extends OrientableBlock {
             BlockEntity blockEntity = world.getBlockEntity(pos);
 
             if (blockEntity instanceof StationBlockEntity station) {
-                if (stack.isOf(ModItems.DRONE_ITEM)) {
+                if (stack.isOf(ModItems.DRONE_DEFAULT_ITEM)) {
                     if (station.hasLinkedDrone()) {
                         UUID uuid = station.getLinkedDroneUuid();
                         Entity linked = world.getEntity(uuid);
