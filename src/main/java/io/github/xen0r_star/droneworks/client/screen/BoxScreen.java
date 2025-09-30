@@ -6,11 +6,14 @@ import io.github.xen0r_star.droneworks.client.model.DroneModel;
 import io.github.xen0r_star.droneworks.client.renderer.DRONE_COLOR;
 import io.github.xen0r_star.droneworks.client.renderer.DroneRenderer;
 import io.github.xen0r_star.droneworks.entity.DroneEntity;
+import io.github.xen0r_star.droneworks.network.BoxCraftPacket;
+//import io.github.xen0r_star.droneworks.network.ClientCraftTimer;
 import io.github.xen0r_star.droneworks.registry.ModEntities;
 import io.github.xen0r_star.droneworks.registry.ModItems;
 import io.github.xen0r_star.droneworks.screen.BoxScreenHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
@@ -31,6 +34,8 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
     private static final Identifier TEXTURE = Identifier.of(Main.MOD_ID, "textures/gui/container/box_block1.png");
     private ButtonWidget startButton;
     private PlayerInventory inventory;
+//    private boolean tickCounterStart = false;
+//    private int tickCounter = 0;
 
     public BoxScreen(BoxScreenHandler handler, PlayerInventory inv, Text title) {
         super(handler, inv, title);
@@ -46,11 +51,8 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
 
         startButton = ButtonWidget.builder(Text.translatable("button.text.box"), btn -> {
             if (handler.isCraftButtonActive()) {
-                System.out.println("ready");
-//                this.handler.startCraftingServerSide();
-
-            } else if (handler.isRetrieveButtonActive()) {
-//                handler.retrieveServerSide(inventory.player);
+                ClientPlayNetworking.send(new BoxCraftPacket());
+//                tickCounterStart = true;
             }
 
         }).dimensions(this.width / 2 - 81, this.height / 2 - 23, 73, 18).build();
@@ -65,8 +67,8 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
         if (this.client != null && this.client.world != null) {
             DroneEntity drone = new DroneEntity(ModEntities.DRONE, this.client.world);
             DroneRenderer renderer = (DroneRenderer) MinecraftClient.getInstance()
-                    .getEntityRenderDispatcher()
-                    .getRenderer(drone);
+                .getEntityRenderDispatcher()
+                .getRenderer(drone);
             DroneModel model = renderer.getModel();
 
             drone.setAngles(180, 180);
@@ -100,6 +102,13 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
             );
 
             startButton.active = allFilled();
+
+//            if (tickCounterStart && this.tickCounter < 30.0 * 20) {
+//                this.tickCounter++;
+//            }
+//
+//            int progressWidth = (int) ((tickCounter / (30.0 * 20)) * 71);
+//            context.fill(x1, y1 + 48, x1 + progressWidth, y1 + 50, 0xFF00FF00);
         }
     }
 
@@ -116,32 +125,11 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
                 this.backgroundWidth, this.backgroundHeight,
                 this.backgroundWidth, this.backgroundHeight
         );
-
-        ctx.drawTextWithShadow(this.textRenderer, this.title.getString(), x + (this.backgroundWidth - this.textRenderer.getWidth(this.title.getString())) / 2, y + 6, 4210752);
-        ctx.drawTextWithShadow(this.textRenderer, this.playerInventoryTitle.getString(), x + 8, y + this.backgroundHeight - 94 + 10, 4210752);
-
-
-        int progressWidth = 0;
-//        if (this.handler.getBlockEntity() instanceof BoxBlockEntity station) {
-//            progressWidth = (int) ((double) station.getProgress() / station.getProgressMax() * 71);
-//        }
-
-        int x1 = this.width / 2 - 80;
-        int y1 = this.height / 2 - 28;
-        int x2 = x1 + progressWidth;
-        int y2 = y1 + 22;
-        ctx.fill(x1, y1, x2, y2, 0xFF00FF00);
     }
 
     @Override
     protected void drawForeground(DrawContext context, int mouseX, int mouseY) {
-        int titleX = (this.backgroundWidth - this.textRenderer.getWidth(this.title)) / 2;
-        int titleY = 6;
-        context.drawText(this.textRenderer, this.title, titleX, titleY, 4210752, false);
-
-        int invX = 8;
-        int invY = this.backgroundHeight - 94 + 10;
-        context.drawText(this.textRenderer, this.playerInventoryTitle, invX, invY, 4210752, false);
+        super.drawForeground(context, mouseX, mouseY);
     }
 
     private boolean allFilled() {

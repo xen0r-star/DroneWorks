@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": ["droneworks:drone_item"]
+            "tag": "droneworks:drones"
           }
         ]
       },
@@ -14,7 +14,7 @@
   },
   "display": {
     "icon": {
-      "id": "droneworks:drone_item",
+      "id": "droneworks:drone_default_item",
       "count": 1
     },
     "title": {

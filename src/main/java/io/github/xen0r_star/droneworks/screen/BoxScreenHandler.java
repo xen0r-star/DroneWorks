@@ -16,6 +16,7 @@ import net.minecraft.screen.slot.Slot;
 
 public class BoxScreenHandler extends ScreenHandler {
     private final Inventory inventory;
+    private boolean craftReady = false;
 
     public BoxScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, new SimpleInventory(7));
@@ -33,20 +34,18 @@ public class BoxScreenHandler extends ScreenHandler {
 
 
     public boolean isCraftButtonActive() {
-        System.out.println("Ready111");
-        if (this.inventory instanceof BoxBlockEntity box) {
-            System.out.println("dddddddd");
-            return !box.getCrafting() && !box.getReady() && box.allSlotsFilled();
+        boolean allFilled = true;
+
+        for (int i = 0; i < 6; i++) {
+            if (!this.slots.get(i).hasStack()) {
+                allFilled = false;
+                break;
+            }
         }
-        return false;
+
+        return allFilled;
     }
 
-    public boolean isRetrieveButtonActive() {
-        if (this.inventory instanceof BoxBlockEntity station) {
-            return station.canRetrieve();
-        }
-        return false;
-    }
 
 //    public void startCraftingServerSide() {
 //        blockEntity.startCrafting();
@@ -60,6 +59,13 @@ public class BoxScreenHandler extends ScreenHandler {
 //        return this.blockEntity;
 //    }
 
+    public void setCraftReady(boolean b) {
+        this.craftReady = b;
+    }
+
+    public boolean getCraftReady() {
+        return this.craftReady;
+    }
 
 
     @Override

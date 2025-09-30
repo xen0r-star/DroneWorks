@@ -2,10 +2,7 @@ package io.github.xen0r_star.droneworks.block;
 
 import io.github.xen0r_star.droneworks.client.renderer.DRONE_COLOR;
 import io.github.xen0r_star.droneworks.entity.DroneEntity;
-import io.github.xen0r_star.droneworks.registry.ModCriteria;
-import io.github.xen0r_star.droneworks.registry.ModEntities;
-import io.github.xen0r_star.droneworks.registry.ModItems;
-import io.github.xen0r_star.droneworks.registry.OrientableBlock;
+import io.github.xen0r_star.droneworks.registry.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -53,7 +50,7 @@ public class StationBlock extends OrientableBlock {
             BlockEntity blockEntity = world.getBlockEntity(pos);
 
             if (blockEntity instanceof StationBlockEntity station) {
-                if (stack.isOf(ModItems.DRONE_DEFAULT_ITEM)) {
+                if (!stack.isEmpty() && stack.isIn(ModTags.DRONES)) {
                     if (station.hasLinkedDrone()) {
                         UUID uuid = station.getLinkedDroneUuid();
                         Entity linked = world.getEntity(uuid);

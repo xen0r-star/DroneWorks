@@ -25,7 +25,7 @@ import java.util.UUID;
 
 public class StationBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, Inventory {
     private UUID linkedDroneUuid;
-    private final DefaultedList<ItemStack> items = DefaultedList.ofSize(21, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> items = DefaultedList.ofSize(27, ItemStack.EMPTY);
     private boolean isPlaying = true;
 
 
@@ -86,10 +86,6 @@ public class StationBlockEntity extends BlockEntity implements NamedScreenHandle
         this.setPlaying(true);
     }
 
-    public DefaultedList<ItemStack> getInventory() {
-        return items;
-    }
-
 
     @Override
     protected void writeData(WriteView view) {
@@ -145,10 +141,6 @@ public class StationBlockEntity extends BlockEntity implements NamedScreenHandle
         markDirty();
     }
 
-    public boolean isPlaying() {
-        return isPlaying;
-    }
-
     public void setPlaying(boolean playing) {
         this.isPlaying = playing;
         markDirty();
@@ -175,7 +167,6 @@ public class StationBlockEntity extends BlockEntity implements NamedScreenHandle
 
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        BlockPos pos = this.getPos();
-        return new StationScreenHandler(syncId, playerInventory, this, this.pos, this.isPlaying());
+        return new StationScreenHandler(syncId, playerInventory, this);
     }
 }

@@ -11,4 +11,10 @@ public class ModTags {
             Registries.ITEM.getKey(),
             Identifier.of("droneworks", "spray_paints")
         );
+
+    public static final TagKey<Item> DRONES =
+        TagKey.of(
+            Registries.ITEM.getKey(),
+            Identifier.of("droneworks", "drones")
+        );
 }

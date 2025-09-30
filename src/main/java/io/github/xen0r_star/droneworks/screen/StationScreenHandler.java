@@ -6,32 +6,22 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.util.math.BlockPos;
 
 
 public class StationScreenHandler extends ScreenHandler {
     private final Inventory inventory;
-    private final BlockPos pos;
-    private final boolean isPlaying;
 
     public StationScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(21), BlockPos.ORIGIN, true);
+        this(syncId, playerInventory, new SimpleInventory(27));
     }
 
-    public StationScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
-        this(syncId, playerInventory, new SimpleInventory(21), buf.readBlockPos(), buf.readBoolean());
-    }
-
-    public StationScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, BlockPos pos, boolean isPlaying) {
+    public StationScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
         super(ModScreenHandlers.STATION_SCREEN_HANDLER, syncId);
         this.inventory = inventory;
-        this.pos = pos;
-        this.isPlaying = isPlaying;
 
-        checkSize(inventory, 21);
+        checkSize(inventory, 27);
         inventory.onOpen(playerInventory.player);
 
         addBlockInventorySlots();
@@ -46,17 +36,45 @@ public class StationScreenHandler extends ScreenHandler {
     }
 
     @Override
-    public ItemStack quickMove(PlayerEntity player, int slot) {
-        return ItemStack.EMPTY;
+    public ItemStack quickMove(PlayerEntity player, int slotIndex) {
+        ItemStack movedStack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(slotIndex);
+
+        if (slot.hasStack()) {
+            ItemStack stackInSlot = slot.getStack();
+            movedStack = stackInSlot.copy();
+
+            int blockInventoryEnd = 27;
+            int playerInventoryStart = 27;
+            int playerInventoryEnd = playerInventoryStart + 36;
+
+            if (slotIndex < blockInventoryEnd) {
+                if (!this.insertItem(stackInSlot, playerInventoryStart, playerInventoryEnd, true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else {
+                if (!this.insertItem(stackInSlot, 0, blockInventoryEnd, false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
+
+            if (stackInSlot.isEmpty()) {
+                slot.setStack(ItemStack.EMPTY);
+            } else {
+                slot.markDirty();
+            }
+        }
+
+        return movedStack;
     }
 
     private void addBlockInventorySlots() {
-        int x=44;
+        int x=8;
         int y=17;
 
         for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 7; col++) {
-                int slotIndex = col + row * 7;
+            for (int col = 0; col < 9; col++) {
+                int slotIndex = col + row * 9;
                 int slotX = x + col * 18;
                 int slotY = y + row * 18;
                 this.addSlot(new Slot(inventory, slotIndex, slotX, slotY));
@@ -81,13 +99,5 @@ public class StationScreenHandler extends ScreenHandler {
             int slotY = 84 + 58;
             this.addSlot(new Slot(playerInventory, col, slotX, slotY));
         }
-    }
-
-    public BlockPos getBlockPos() {
-        return pos;
-    }
-
-    public boolean isPlaying() {
-        return isPlaying;
     }
 }

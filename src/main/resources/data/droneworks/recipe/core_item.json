@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#D#",
+    "###"
+  ],
+  "key": {
+    "#": "minecraft:obsidian",
+    "D": "minecraft:diamond"
+  },
+  "result": {
+    "count": 1,
+    "id": "droneworks:core_item"
+  }
+}
