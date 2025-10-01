@@ -58,6 +58,7 @@ public class ModItemGroups {
                 entries.add(ModItems.DRONE_RED_ITEM);
                 entries.add(ModItems.DRONE_WHITE_ITEM);
                 entries.add(ModItems.DRONE_YELLOW_ITEM);
+                entries.add(ModItems.DRONE_DEFAULT_ITEM);
             })
             .build()
     );

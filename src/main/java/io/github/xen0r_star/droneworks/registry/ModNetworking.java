@@ -1,25 +1,14 @@
 package io.github.xen0r_star.droneworks.registry;
 
 import io.github.xen0r_star.droneworks.network.BoxCraftPacket;
-//import io.github.xen0r_star.droneworks.network.ClientCraftTimer;
 import io.github.xen0r_star.droneworks.screen.BoxScreenHandler;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class ModNetworking {
@@ -38,7 +27,7 @@ public class ModNetworking {
 
                 if (player.currentScreenHandler instanceof BoxScreenHandler handler) {
                     ItemStack stackSprayPaint = handler.getSlot(6).getStack();
-                    Item drone = null;
+                    Item drone;
 
                     if (!stackSprayPaint.isEmpty()) {
                         Item sprayPaint = stackSprayPaint.getItem();

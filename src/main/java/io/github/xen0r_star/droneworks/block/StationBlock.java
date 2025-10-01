@@ -86,10 +86,6 @@ public class StationBlock extends OrientableBlock {
                     world.spawnEntity(drone);
 
                     Item droneColor = stack.getItem();
-                    if (droneColor == ModItems.DRONE_BLUE_ITEM) {
-
-                    }
-
                     if (droneColor == ModItems.DRONE_WHITE_ITEM) {
                         drone.setColor(DRONE_COLOR.WHITE);
                     } else if (droneColor == ModItems.DRONE_LIGHT_GRAY_ITEM) {
@@ -146,12 +142,10 @@ public class StationBlock extends OrientableBlock {
                         stack.decrement(1);
                     }
 
-                    return ActionResult.SUCCESS;
-
                 } else {
                     player.openHandledScreen(station);
-                    return ActionResult.SUCCESS;
                 }
+                return ActionResult.SUCCESS;
             }
         }
 

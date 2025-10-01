@@ -1,74 +1,93 @@
-# 🚁 DroneWorks
+<div align="center">
+   <h1>Drone Works</h1>
 
-![Version](https://img.shields.io/github/v/release/xen0r-star/DroneWorks?label=release)
-![Issues](https://img.shields.io/github/issues/xen0r-star/DroneWorks)
-![Stars](https://img.shields.io/github/stars/xen0r-star/DroneWorks)
-![License](https://img.shields.io/github/license/xen0r-star/DroneWorks)
-![Build](https://img.shields.io/github/workflow/status/xen0r-star/DroneWorks/CI?label=build)
+![Minecraft](https://img.shields.io/badge/Minecraft-1.21.8-brightgreen?style=for-the-badge&logo=minecraft)
+![Fabric](https://img.shields.io/badge/Mod%20Loader-Fabric-blue?style=for-the-badge&logo=fabricmc)
+![Modrinth](https://img.shields.io/badge/Modrinth-Drone%20Works-00AF5C?style=for-the-badge&logo=modrinth)
+![Wiki](https://img.shields.io/badge/Wiki-Available-blueviolet?style=for-the-badge)
 
-## ✨ Overview
+<h3 style="display: inline;">Automate your harvests with smart farming drones!</h3>
+   <p style="max-width: 700px;">A Minecraft Fabric 1.21.8 mod that adds drones capable of harvesting your crops and automatically depositing resources in a station.</p>
 
-**DroneWorks** is a Minecraft mod introducing automated drones to assist you in your adventures! Program, control, and upgrade your own drones to gather resources, explore, or defend your base.
-
----
-
-## 🛠️ Key Features
-
-- **Drone construction and customization**: Create different types of drones.
-- **Automation**: Program tasks (mining, gathering, defending...).
-- **Multiplayer compatibility**: Your drones work even on servers.
-- **Intuitive interface**: Easy-to-use UI for configuring your drones.
+   <br>
+</div>
 
 ---
 
-## 📸 Preview
+## 🌾 Mod Objective
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/xen0r-star/DroneWorks/main/assets/screenshot1.png" alt="DroneWorks Example" width="400"/>
-  <img src="https://raw.githubusercontent.com/xen0r-star/DroneWorks/main/assets/screenshot2.png" alt="Drone in action" width="400"/>
-</p>
+**Drone Works** aims to automate crop harvesting in Minecraft while remaining simple, balanced, and aesthetic.\
+Drones harvest **carrots, wheat, potatoes, and beetroots** within a **10-block radius**, then deposit everything in their **connected station**.
 
 ---
 
-## 🚀 Installation
+## 📦 Installation
 
-1. Download the latest mod version from the [releases page](https://github.com/xen0r-star/DroneWorks/releases).
-2. Place the `.jar` file in your Minecraft `mods` folder.
-3. Start Minecraft using Forge or Fabric (depending on the mod version).
-
----
-
-## 📚 Documentation
-
-- [Mod Wiki](https://github.com/xen0r-star/DroneWorks/wiki) — Tutorials, guides, and examples.
-- [FAQ](https://github.com/xen0r-star/DroneWorks/discussions)
+1. Download and install **Fabric Loader** for Minecraft **1.21.8** [🔗https://fabricmc.net](https://fabricmc.net)
+2. Install **Fabric API**
+3. Place the mod `.jar` file in:
+   ```
+   .minecraft/mods/
+   ```
+4. Launch the game and enjoy your farming drones 🛸
 
 ---
 
-## 🤝 Contributing
+## 📸 Image Gallery
 
-Contributions are welcome! To participate:
-1. Fork the project.
-2. Create a branch (`feature/my-new-feature`).
-3. Submit a Pull Request.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for more information.
-
----
-
-## 📣 Community & Support
-
-- [Report a bug](https://github.com/xen0r-star/DroneWorks/issues)
-- [Join the discussion](https://github.com/xen0r-star/DroneWorks/discussions)
+<table>
+    <tr>
+        <td><img src="./docs/Screenshot1.png" alt="Screenshot 1" width="400"/></td>
+        <td><img src="./docs/Screenshot2.png" alt="Screenshot 2" width="400"/></td>
+    </tr>
+    <tr>
+        <td><img src="./docs/Screenshot3.png" alt="Screenshot 3" width="400"/></td>
+        <td><img src="./docs/Screenshot4.png" alt="Screenshot 4" width="400"/></td>
+    </tr>
+</table>
 
 ---
 
-## 📝 License
+## 🧠 Current Features
 
-This mod is distributed under the [MIT License](LICENSE).
+[X] Drones automatically harvesting crops\
+[X] Full crafting system\
+[X] Harvest and storage station\
+[X] Hopper compatibility\
+[X] 16 drone colors\
+[] Add crafting time when creating the drone\
+[] Sounds and animations for drones\
+[] Add custom structures to the map\
+[] Support for other crops
 
 ---
 
-<p align="center">
-  <b>DroneWorks — Build, program, and rule the Minecraft skies!</b>
-</p>
+## 💬 Useful Links
+
+- 📚 [Full Wiki](https://github.com/xen0r-star/DroneWorks/wiki)
+- 🥱 [Modrinth](https://modrinth.com/mod/drone-works)
+- 🐛 [Report a bug](https://github.com/DroneWorks/issues)
+- 💡 [Contribute to the project](https://github.com/DroneWorks/pulls)
+
+---
+
+## 🧟 Technical Information
+
+| Detail            | Value              |
+| ----------------- | ------------------|
+| Minecraft Version | 1.21.8             |
+| Loader            | Fabric             |
+| Required API      | Fabric API         |
+| Language          | French / English   |
+| License           | MIT                |
+| Author            | Xen0r-star         |
+
+---
+
+### ❤️ Thank you for using **Drone Works**!
+
+If you enjoy this mod, consider:
+
+- ⭐ **Starring** the project on GitHub
+- 💬 Leaving feedback on Modrinth
+- 🚀 Sharing your creations with the community

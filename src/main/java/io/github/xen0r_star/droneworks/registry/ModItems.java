@@ -277,7 +277,7 @@ public final class ModItems {
     );
 
     static RegistryKey<Item> DRONE_DEFAULT_ITEM_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Main.MOD_ID, "drone_default_item"));
-    public static Item DRONE_DEFAULT_ITEM= Registry.register(
+    public static Item DRONE_DEFAULT_ITEM = Registry.register(
         Registries.ITEM,
         DRONE_DEFAULT_ITEM_KEY,
         new Item(new Item.Settings()

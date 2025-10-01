@@ -3,16 +3,12 @@ package io.github.xen0r_star.droneworks;
 import io.github.xen0r_star.droneworks.client.model.DroneModel;
 import io.github.xen0r_star.droneworks.client.renderer.DroneRenderer;
 import io.github.xen0r_star.droneworks.client.screen.StationScreen;
-import io.github.xen0r_star.droneworks.network.BoxCraftPacket;
-//import io.github.xen0r_star.droneworks.network.ClientCraftTimer;
 import io.github.xen0r_star.droneworks.registry.ModEntities;
 import io.github.xen0r_star.droneworks.registry.ModScreenHandlers;
 import io.github.xen0r_star.droneworks.client.screen.BoxScreen;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 
 

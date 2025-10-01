@@ -240,22 +240,11 @@ public class DroneEntity extends PathAwareEntity {
         return DRONE_COLOR.fromValue(this.dataTracker.get(COLOR));
     }
 
-    // Return to station
-    public void forceReturnToStation() {
-        this.forcedReturnToStation = true;
-    }
-
     public void clearForcedReturnFlag() {
         this.forcedReturnToStation = false;
     }
 
     public boolean isForcedToReturn() {
         return this.forcedReturnToStation;
-    }
-
-
-    // Return work
-    public void resumeWork() {
-        this.clearForcedReturnFlag();
     }
 }

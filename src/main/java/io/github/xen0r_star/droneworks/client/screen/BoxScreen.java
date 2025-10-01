@@ -1,15 +1,12 @@
 package io.github.xen0r_star.droneworks.client.screen;
 
 import io.github.xen0r_star.droneworks.Main;
-import io.github.xen0r_star.droneworks.block.BoxBlockEntity;
 import io.github.xen0r_star.droneworks.client.model.DroneModel;
 import io.github.xen0r_star.droneworks.client.renderer.DRONE_COLOR;
 import io.github.xen0r_star.droneworks.client.renderer.DroneRenderer;
 import io.github.xen0r_star.droneworks.entity.DroneEntity;
 import io.github.xen0r_star.droneworks.network.BoxCraftPacket;
-//import io.github.xen0r_star.droneworks.network.ClientCraftTimer;
 import io.github.xen0r_star.droneworks.registry.ModEntities;
-import io.github.xen0r_star.droneworks.registry.ModItems;
 import io.github.xen0r_star.droneworks.screen.BoxScreenHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -21,7 +18,6 @@ import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -33,15 +29,11 @@ import org.joml.Vector3f;
 public class BoxScreen extends HandledScreen<BoxScreenHandler> {
     private static final Identifier TEXTURE = Identifier.of(Main.MOD_ID, "textures/gui/container/box_block1.png");
     private ButtonWidget startButton;
-    private PlayerInventory inventory;
-//    private boolean tickCounterStart = false;
-//    private int tickCounter = 0;
 
     public BoxScreen(BoxScreenHandler handler, PlayerInventory inv, Text title) {
         super(handler, inv, title);
         this.backgroundWidth = 176;
         this.backgroundHeight = 183;
-        this.inventory = inv;
     }
 
     @Override
@@ -52,7 +44,6 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
         startButton = ButtonWidget.builder(Text.translatable("button.text.box"), btn -> {
             if (handler.isCraftButtonActive()) {
                 ClientPlayNetworking.send(new BoxCraftPacket());
-//                tickCounterStart = true;
             }
 
         }).dimensions(this.width / 2 - 81, this.height / 2 - 23, 73, 18).build();
@@ -102,13 +93,6 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
             );
 
             startButton.active = allFilled();
-
-//            if (tickCounterStart && this.tickCounter < 30.0 * 20) {
-//                this.tickCounter++;
-//            }
-//
-//            int progressWidth = (int) ((tickCounter / (30.0 * 20)) * 71);
-//            context.fill(x1, y1 + 48, x1 + progressWidth, y1 + 50, 0xFF00FF00);
         }
     }
 

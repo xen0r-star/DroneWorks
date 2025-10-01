@@ -39,6 +39,8 @@
   "item.droneworks.drone_red_item": "Red Drone",
   "item.droneworks.drone_white_item": "White Drone",
   "item.droneworks.drone_yellow_item": "Yellow Drone",
+  "item.droneworks.drone_default_item": "Drone",
+  "tag.item.droneworks.drones": "Drones",
   "tag.item.droneworks.spray_paints": "Spray Paints",
   "tag.item.droneworks.chests": "Chests",
   "block.droneworks.box_block": "Box block",

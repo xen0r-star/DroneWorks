@@ -1,6 +1,5 @@
 package io.github.xen0r_star.droneworks.screen;
 
-import io.github.xen0r_star.droneworks.block.BoxBlockEntity;
 import io.github.xen0r_star.droneworks.registry.ModItems;
 import io.github.xen0r_star.droneworks.registry.ModScreenHandlers;
 import io.github.xen0r_star.droneworks.registry.ModTags;
@@ -44,27 +43,6 @@ public class BoxScreenHandler extends ScreenHandler {
         }
 
         return allFilled;
-    }
-
-
-//    public void startCraftingServerSide() {
-//        blockEntity.startCrafting();
-//    }
-//
-//    public void retrieveServerSide(PlayerEntity player) {
-//        blockEntity.retrieve(player);
-//    }
-//
-//    public BoxBlockEntity getBlockEntity() {
-//        return this.blockEntity;
-//    }
-
-    public void setCraftReady(boolean b) {
-        this.craftReady = b;
-    }
-
-    public boolean getCraftReady() {
-        return this.craftReady;
     }
 
 
@@ -215,5 +193,13 @@ public class BoxScreenHandler extends ScreenHandler {
             int slotY = 101 + 58;
             this.addSlot(new Slot(playerInventory, col, slotX, slotY));
         }
+    }
+
+    public boolean isCraftReady() {
+        return craftReady;
+    }
+
+    public void setCraftReady(boolean craftReady) {
+        this.craftReady = craftReady;
     }
 }

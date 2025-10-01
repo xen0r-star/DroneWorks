@@ -5,7 +5,6 @@ import io.github.xen0r_star.droneworks.registry.ModBlockEntities;
 import io.github.xen0r_star.droneworks.screen.StationScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -57,33 +56,6 @@ public class StationBlockEntity extends BlockEntity implements NamedScreenHandle
         }
 
         markDirty();
-    }
-
-    public void orderDroneReturnToBase() {
-        if (this.world == null || this.world.isClient()) return;
-
-        if (linkedDroneUuid == null) return;
-
-        Entity entity = this.world.getEntity(linkedDroneUuid);
-        if (entity instanceof DroneEntity drone && !drone.isRemoved()) {
-            drone.forceReturnToStation();
-            drone.setLinkedStationPos(this.getPos());
-        }
-
-        this.setPlaying(false);
-    }
-
-    public void orderDroneResume() {
-        if (this.world == null || this.world.isClient()) return;
-
-        if (linkedDroneUuid == null) return;
-
-        Entity entity = this.world.getEntity(linkedDroneUuid);
-        if (entity instanceof DroneEntity drone && !drone.isRemoved()) {
-            drone.resumeWork();
-        }
-
-        this.setPlaying(true);
     }
 
 
@@ -139,15 +111,6 @@ public class StationBlockEntity extends BlockEntity implements NamedScreenHandle
     public void setStack(int slot, ItemStack stack) {
         items.set(slot, stack);
         markDirty();
-    }
-
-    public void setPlaying(boolean playing) {
-        this.isPlaying = playing;
-        markDirty();
-
-        if (this.world != null && !this.world.isClient()) {
-            this.world.updateListeners(pos, getCachedState(), getCachedState(), 3);
-        }
     }
 
 

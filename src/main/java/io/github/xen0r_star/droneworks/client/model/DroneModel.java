@@ -1,10 +1,6 @@
 package io.github.xen0r_star.droneworks.client.model;
 
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.animation.AnimationDefinition;
-import net.minecraft.client.render.entity.animation.AnimationHelper;
-import net.minecraft.client.render.entity.animation.Keyframe;
-import net.minecraft.client.render.entity.animation.Transformation;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.render.entity.state.EntityRenderState;
