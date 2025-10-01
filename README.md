@@ -50,15 +50,15 @@ Drones harvest **carrots, wheat, potatoes, and beetroots** within a **10-block r
 
 ## 🧠 Current Features
 
-[X] Drones automatically harvesting crops\
-[X] Full crafting system\
-[X] Harvest and storage station\
-[X] Hopper compatibility\
-[X] 16 drone colors\
-[] Add crafting time when creating the drone\
-[] Sounds and animations for drones\
-[] Add custom structures to the map\
-[] Support for other crops
+[x] Drones automatically harvesting crops\
+[x] Full crafting system\
+[x] Harvest and storage station\
+[x] Hopper compatibility\
+[x] 16 drone colors\
+[ ] Add crafting time when creating the drone\
+[ ] Sounds and animations for drones\
+[ ] Add custom structures to the map\
+[ ] Support for other crops
 
 ---
 
