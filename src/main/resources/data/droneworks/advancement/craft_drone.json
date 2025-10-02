@@ -5,7 +5,25 @@
       "conditions": {
         "items": [
           {
-            "tag": "droneworks:drones"
+            "items": [
+              "droneworks:drone_default_item",
+              "droneworks:drone_black_item",
+              "droneworks:drone_blue_item",
+              "droneworks:drone_brown_item",
+              "droneworks:drone_cyan_item",
+              "droneworks:drone_gray_item",
+              "droneworks:drone_green_item",
+              "droneworks:drone_light_blue_item",
+              "droneworks:drone_light_gray_item",
+              "droneworks:drone_lime_item",
+              "droneworks:drone_magenta_item",
+              "droneworks:drone_orange_item",
+              "droneworks:drone_pink_item",
+              "droneworks:drone_purple_item",
+              "droneworks:drone_red_item",
+              "droneworks:drone_white_item",
+              "droneworks:drone_yellow_item"
+            ]
           }
         ]
       },

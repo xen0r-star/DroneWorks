@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "droneworks:drones"
+            "items": "droneworks:core_item"
           }
         ]
       },

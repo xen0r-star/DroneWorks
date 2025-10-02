@@ -1,9 +1,7 @@
 package io.github.xen0r_star.droneworks.client.screen;
 
 import io.github.xen0r_star.droneworks.Main;
-import io.github.xen0r_star.droneworks.client.model.DroneModel;
 import io.github.xen0r_star.droneworks.client.renderer.DRONE_COLOR;
-import io.github.xen0r_star.droneworks.client.renderer.DroneRenderer;
 import io.github.xen0r_star.droneworks.entity.DroneEntity;
 import io.github.xen0r_star.droneworks.network.BoxCraftPacket;
 import io.github.xen0r_star.droneworks.registry.ModEntities;
@@ -11,7 +9,6 @@ import io.github.xen0r_star.droneworks.screen.BoxScreenHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -57,19 +54,19 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
 
         if (this.client != null && this.client.world != null) {
             DroneEntity drone = new DroneEntity(ModEntities.DRONE, this.client.world);
-            DroneRenderer renderer = (DroneRenderer) MinecraftClient.getInstance()
-                .getEntityRenderDispatcher()
-                .getRenderer(drone);
-            DroneModel model = renderer.getModel();
 
             drone.setAngles(180, 180);
             drone.setPos(drone.getX(), drone.getY() + 0.5, drone.getZ());
 
+            boolean bodyVisible = !this.handler.getSlot(2).getStack().isEmpty();
+            drone.showBody(bodyVisible);
+            drone.showEye(bodyVisible);
+            drone.showChargeSocket(bodyVisible);
+            drone.showToolSocket(bodyVisible);
 
-            model.antenna.visible =    !this.handler.getSlot(0).getStack().isEmpty();
-            model.propeller1.visible = !this.handler.getSlot(1).getStack().isEmpty();
-            model.body.visible =       !this.handler.getSlot(2).getStack().isEmpty();
-            model.propeller2.visible = !this.handler.getSlot(3).getStack().isEmpty();
+            drone.showAntenna(!this.handler.getSlot(0).getStack().isEmpty());
+            drone.showPropeller1(!this.handler.getSlot(1).getStack().isEmpty());
+            drone.showPropeller2(!this.handler.getSlot(3).getStack().isEmpty());
 
 
             ItemStack stack = this.handler.getSlot(6).getStack();

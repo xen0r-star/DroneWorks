@@ -3,9 +3,11 @@ package io.github.xen0r_star.droneworks.client.renderer;
 import io.github.xen0r_star.droneworks.Main;
 import io.github.xen0r_star.droneworks.client.model.DroneModel;
 import io.github.xen0r_star.droneworks.entity.DroneEntity;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.render.entity.state.LivingEntityRenderState;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 
@@ -89,7 +91,22 @@ public class DroneRenderer extends MobEntityRenderer<DroneEntity, LivingEntityRe
 
         if (state instanceof DroneRenderState droneState) {
             droneState.setDrone(drone);
+
+            droneState.showBody = drone.shouldShowBody();
+            droneState.showAntenna = drone.shouldShowAntenna();
+            droneState.showToolSocket = drone.shouldShowToolSocket();
+            droneState.showEye = drone.shouldShowEye();
+            droneState.showChargeSocket = drone.shouldShowChargeSocket();
+            droneState.showPropeller1 = drone.shouldShowPropeller1();
+            droneState.showPropeller2 = drone.shouldShowPropeller2();
         }
+
     }
 
+    @Override
+    public void render(LivingEntityRenderState livingEntityRenderState, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
+        matrixStack.push();
+        super.render(livingEntityRenderState, matrixStack, vertexConsumerProvider, i);
+        matrixStack.pop();
+    }
 }

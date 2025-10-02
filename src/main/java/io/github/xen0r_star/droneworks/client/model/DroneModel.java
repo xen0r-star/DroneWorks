@@ -1,5 +1,6 @@
 package io.github.xen0r_star.droneworks.client.model;
 
+import io.github.xen0r_star.droneworks.client.renderer.DroneRenderState;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
@@ -132,8 +133,23 @@ public class DroneModel extends EntityModel<EntityRenderState> {
             this.root.pitch = livingState.pitch * ((float)Math.PI / 180F);
         }
 
-        chargeSocket.visible = body.visible;
-        eye.visible = body.visible;
-        toolSocket.visible = body.visible;
+        if (state instanceof DroneRenderState droneState) {
+            body.visible = droneState.showBody;
+            antenna.visible = droneState.showAntenna;
+            toolSocket.visible = droneState.showToolSocket;
+            eye.visible = droneState.showEye;
+            chargeSocket.visible = droneState.showChargeSocket;
+            propeller1.visible = droneState.showPropeller1;
+            propeller2.visible = droneState.showPropeller2;
+
+        } else {
+            body.visible = true;
+            antenna.visible = true;
+            toolSocket.visible = true;
+            eye.visible = true;
+            chargeSocket.visible = true;
+            propeller1.visible = true;
+            propeller2.visible = true;
+        }
     }
 }

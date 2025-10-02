@@ -4,14 +4,10 @@
     "drone_item": {
       "conditions": {
         "items": [
-          {
-            "items": [
-              "droneworks:antenna_item",
-              "droneworks:battery_item",
-              "droneworks:casing_item",
-              "droneworks:propeller_item"
-            ]
-          }
+          { "items": "droneworks:antenna_item" },
+          { "items": "droneworks:battery_item" },
+          { "items": "droneworks:casing_item" },
+          { "items": "droneworks:propeller_item" }
         ]
       },
       "trigger": "minecraft:inventory_changed"
