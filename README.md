@@ -1,18 +1,27 @@
 <div align="center">
-   <h1>Drone Works</h1>
 
-![Minecraft](https://img.shields.io/badge/Minecraft-1.21.8-brightgreen?style=for-the-badge&logo=minecraft)
-![Fabric](https://img.shields.io/badge/Mod%20Loader-Fabric-blue?style=for-the-badge&logo=fabricmc)
-![Modrinth](https://img.shields.io/badge/Modrinth-Drone%20Works-00AF5C?style=for-the-badge&logo=modrinth)
-![Wiki](https://img.shields.io/badge/Wiki-Available-blueviolet?style=for-the-badge)
+<img src="./docs/Logo.png" alt="Drone Works Logo" width="800"/>
+
+<br>
+<br>
+
+
 
 <h3 style="display: inline;">Automate your harvests with smart farming drones!</h3>
    <p style="max-width: 700px;">A Minecraft Fabric 1.21.8 mod that adds drones capable of harvesting your crops and automatically depositing resources in a station.</p>
 
-   <br>
+ 
 </div>
 
 ---
+<div align="center">
+
+[![Minecraft](https://img.shields.io/badge/Minecraft-1.21.8-brightgreen?style=for-the-badge&logo=minecraft)](https://www.minecraft.net)
+[![Fabric](https://img.shields.io/badge/Mod%20Loader-Fabric-blue?style=for-the-badge&logo=fabricmc)](https://fabricmc.net)
+[![Modrinth](https://img.shields.io/badge/Modrinth-Drone%20Works-00AF5C?style=for-the-badge&logo=modrinth)](https://modrinth.com/mod/drone-works)
+[![Wiki](https://img.shields.io/badge/Wiki-Available-blueviolet?style=for-the-badge)](https://github.com/xen0r-star/DroneWorks/wiki)
+
+</div>
 
 ## 🌾 Mod Objective
 
@@ -23,7 +32,7 @@ Drones harvest **carrots, wheat, potatoes, and beetroots** within a **10-block r
 
 ## 📦 Installation
 
-1. Download and install **Fabric Loader** for Minecraft **1.21.8** [🔗https://fabricmc.net](https://fabricmc.net)
+1. Download and install **Fabric Loader** for Minecraft **1.21.8** 🔗 [ https://fabricmc.net](https://fabricmc.net)
 2. Install **Fabric API**
 3. Place the mod `.jar` file in:
    ```
