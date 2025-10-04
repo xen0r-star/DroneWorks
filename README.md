@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./docs/Logo.png" alt="Drone Works Logo" width="800"/>
+<img src="https://raw.githubusercontent.com/xen0r-star/DroneWorks/40926c9d6e2979468debe1ece7c88d237e1a3470/docs/logo.png" alt="Drone Works Logo" width="800"/>
 
 <br>
 <br>
@@ -46,12 +46,12 @@ Drones harvest **carrots, wheat, potatoes, and beetroots** within a **10-block r
 
 <table>
     <tr>
-        <td><img src="./docs/Screenshot1.png" alt="Screenshot 1" width="400"/></td>
-        <td><img src="./docs/Screenshot2.png" alt="Screenshot 2" width="400"/></td>
+        <td><img src="https://raw.githubusercontent.com/xen0r-star/DroneWorks/40926c9d6e2979468debe1ece7c88d237e1a3470/docs/Screenshot1.png" alt="Screenshot 1" width="400"/></td>
+        <td><img src="https://raw.githubusercontent.com/xen0r-star/DroneWorks/40926c9d6e2979468debe1ece7c88d237e1a3470/docs/Screenshot2.png" alt="Screenshot 2" width="400"/></td>
     </tr>
     <tr>
-        <td><img src="./docs/Screenshot3.png" alt="Screenshot 3" width="400"/></td>
-        <td><img src="./docs/Screenshot4.png" alt="Screenshot 4" width="400"/></td>
+        <td><img src="https://raw.githubusercontent.com/xen0r-star/DroneWorks/40926c9d6e2979468debe1ece7c88d237e1a3470/docs/Screenshot3.png" alt="Screenshot 3" width="400"/></td>
+        <td><img src="https://raw.githubusercontent.com/xen0r-star/DroneWorks/40926c9d6e2979468debe1ece7c88d237e1a3470/docs/Screenshot4.png" alt="Screenshot 4" width="400"/></td>
     </tr>
 </table>
 
